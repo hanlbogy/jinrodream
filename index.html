@@ -521,8 +521,62 @@
               </div>
             </section>
 
+            {/* --- 진로드림 소개 (신규 추가된 섹션) --- */}
+            <section id="about" className="py-16 md:py-24 bg-white">
+              <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  
+                  {/* 텍스트 영역 */}
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">진로드림 소개</h2>
+                    <div className="text-lg text-muted-foreground space-y-4">
+                      <p>
+                        진로드림은 2020년부터 시작된, 서울시교육청에서 인증한 강사진들의 모임입니다.
+                      </p>
+                      <p>
+                        2022년, 2024년 교육부 장관상을 받으며 우리 사회가 진로를 펼칠 수 있도록 노력하고 있습니다.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* 이미지 갤러리 영역 */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* 단체 사진 (가로로 길게) */}
+                    <div className="col-span-2 overflow-hidden rounded-lg shadow-lg border">
+                      <img 
+                        src="KakaoTalk_20250626_220554929_23.jpg" 
+                        alt="진로드림 강사진" 
+                        className="w-full h-full object-cover aspect-video" 
+                        onError={(e) => e.target.src = 'https://placehold.co/600x300/e2e8f0/64748b?text=Image+Not+Found'}
+                      />
+                    </div>
+                    {/* 2022년 상장 */}
+                    <div className="overflow-hidden rounded-lg shadow-lg border">
+                      <img 
+                        src="교육부장관상22년.jpg" 
+                        alt="2022년 교육부 장관상" 
+                        className="w-full h-full object-contain" 
+                        onError={(e) => e.target.src = 'https://placehold.co/400x500/e2e8f0/64748b?text=Image+Not+Found'}
+                      />
+                    </div>
+                    {/* 2024년 상장 */}
+                    <div className="overflow-hidden rounded-lg shadow-lg border">
+                      <img 
+                        src="교육부장관상24년.jpg" 
+                        alt="2024년 교육부 장관상" 
+                        className="w-full h-full object-contain" 
+                        onError={(e) => e.target.src = 'https://placehold.co/400x500/e2e8f0/64748b?text=Image+Not+Found'}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            {/* --- 여기까지 신규 섹션 --- */}
+
+
             {/* Core Services */}
-            <section id="services" className="py-16 md:py-24">
+            <section id="services" className="py-16 md:py-24 bg-muted/30">
               <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">핵심 서비스</h2>
