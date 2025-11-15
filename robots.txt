@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hanlbogy.github.io/jinrodream//sitemap.xml
