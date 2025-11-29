@@ -342,8 +342,8 @@
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-16 text-muted-foreground shrink-0">웹사이트</span>
-                    <a href="http://jinrodream.jinrodream.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary break-all">
-                      jinrodream.jinrodream.com
+                    <a href="http://jinrodream@jinrodream.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary break-all">
+                      jinrodream@jinrodream.com
                     </a>
                   </li>
                 </ul>
@@ -384,10 +384,10 @@
       ];
 
       const newsItems = [
-        { title: "2024년 상반기 멘토링 신청 안내", date: "2024.01.15", category: "공지사항" },
-        { title: "진로 탐색을 위한 5가지 필수 팁", date: "2024.01.10", category: "진로 팁" },
-        { title: "성공적인 포트폴리오 작성 가이드", date: "2024.01.05", category: "취업 정보" },
-        { title: "2024 진로 박람회 참가 후기", date: "2023.12.28", category: "행사 후기" },
+        { title: "2026년 상반기 멘토링 신청 안내", date: "2026.01.10", category: "공지사항" },
+        { title: "진로 탐색을 위한 5가지 필수 팁", date: "2026.01.10", category: "진로 팁" },
+        { title: "성공적인 포트폴리오 작성 가이드", date: "2026.01.10", category: "취업 정보" },
+        { title: "2026 진로 박람회 참가 후기", date: "2026.01.10", category: "행사 후기" },
       ];
 
       const testimonials = [
@@ -448,6 +448,7 @@
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Text Card */}
                   <Card className="p-8 flex flex-col justify-center h-full">
                     <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                       <span className="w-1 h-6 bg-primary rounded-full"></span>
@@ -466,8 +467,10 @@
                     </div>
                   </Card>
                   
+                  {/* Image Grid Card */}
                   <Card className="p-4 bg-muted/20">
                     <div className="grid grid-cols-2 gap-4 h-full">
+                      {/* 단체 사진 */}
                       <div className="col-span-2 relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
                         <img 
                           src="KakaoTalk_20250626_220554929_23.jpg" 
@@ -479,6 +482,8 @@
                           진로드림 강사진 단체사진
                         </div>
                       </div>
+                      
+                      {/* 상장 이미지들 */}
                       <div className="relative aspect-[3/4] rounded-lg overflow-hidden border border-border shadow-sm group">
                         <img 
                           src="교육부장관상22년.jpg" 
@@ -493,6 +498,25 @@
                           alt="2024년 교육부 장관상" 
                           className="w-full h-full object-cover transition-transform group-hover:scale-105"
                           onError={(e) => e.target.src = 'https://placehold.co/400x500/f1f5f9/64748b?text=Award+2024'}
+                        />
+                      </div>
+
+                      {/* [추가] 소개 이미지 1 */}
+                      <div className="relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
+                        <img 
+                          src="sogae1.png" 
+                          alt="진로드림 활동 소개 1" 
+                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                          onError={(e) => e.target.src = 'https://placehold.co/600x400/f1f5f9/64748b?text=Intro+1'}
+                        />
+                      </div>
+                      {/* [추가] 소개 이미지 2 */}
+                      <div className="relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
+                        <img 
+                          src="sogae2.png" 
+                          alt="진로드림 활동 소개 2" 
+                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                          onError={(e) => e.target.src = 'https://placehold.co/600x400/f1f5f9/64748b?text=Intro+2'}
                         />
                       </div>
                     </div>
