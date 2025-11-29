@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>진로드림협동조합 - 당신의 잠재력을 현실로</title>
+  <title>진로드림 - 당신의 잠재력을 현실로</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -25,8 +25,8 @@
             primary: {
               DEFAULT: '#007AFF', 
               foreground: '#FFFFFF',
-              dark: '#005bb5', // 조금 더 진한 파랑
-              light: '#e6f2ff' // 아주 연한 파랑 배경용
+              dark: '#005bb5', 
+              light: '#e6f2ff' 
             },
             secondary: {
               DEFAULT: '#34C759', 
@@ -38,9 +38,9 @@
               foreground: '#FFFFFF',
               dark: '#b36b00'
             },
-            background: '#F8FAFC', // HRIS 앱 스타일의 옅은 회색 배경
-            surface: '#FFFFFF',    // 카드 배경색
-            foreground: '#0F172A', // 진한 텍스트
+            background: '#F8FAFC', 
+            surface: '#FFFFFF',    
+            foreground: '#0F172A', 
             muted: {
               DEFAULT: '#F1F5F9',
               foreground: '#64748B',
@@ -48,7 +48,7 @@
             border: '#E2E8F0',
           },
           boxShadow: {
-            'card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)', // 은은한 그림자
+            'card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
           }
         }
       }
@@ -58,9 +58,8 @@
   <style>
     body {
       font-family: 'Noto Sans KR', 'Inter', 'sans-serif';
-      background-color: #F8FAFC; /* 전체 배경색 설정 */
+      background-color: #F8FAFC; 
     }
-    /* 스크롤바 숨김 (선택사항) */
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
@@ -100,51 +99,14 @@
       </svg>
     );
 
-    const ChevronDown = ({ className }) => (
-      <IconWrapper className={className}>
-        <path d="m6 9 6 6 6-6" />
-      </IconWrapper>
-    );
-    
-    const ChevronUp = ({ className }) => (
-      <IconWrapper className={className}>
-        <path d="m18 15-6-6-6 6" />
-      </IconWrapper>
-    );
+    const ChevronDown = ({ className }) => <IconWrapper className={className}><path d="m6 9 6 6 6-6" /></IconWrapper>;
+    const Menu = ({ className }) => <IconWrapper className={className}><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></IconWrapper>;
+    const X = ({ className }) => <IconWrapper className={className}><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></IconWrapper>;
+    const ArrowRight = ({ className }) => <IconWrapper className={className}><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></IconWrapper>;
+    const Quote = ({ className }) => <IconWrapper className={className}><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" /><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" /></IconWrapper>;
 
-    const Menu = ({ className }) => (
-      <IconWrapper className={className}>
-        <line x1="3" y1="12" x2="21" y2="12" />
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <line x1="3" y1="18" x2="21" y2="18" />
-      </IconWrapper>
-    );
-    
-    const X = ({ className }) => (
-      <IconWrapper className={className}>
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </IconWrapper>
-    );
-
-    const ArrowRight = ({ className }) => (
-      <IconWrapper className={className}>
-        <line x1="5" y1="12" x2="19" y2="12" />
-        <polyline points="12 5 19 12 12 19" />
-      </IconWrapper>
-    );
-
-    // Service Icons
+    // Service Icons (Not used in new layout but kept for compatibility)
     const Brain = ({ className }) => <IconWrapper className={className}><path d="M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.003 3.334c0 .354.04.702.115 1.044a4 4 0 0 0 .801 1.631 3 3 0 0 0 1.34 1.155C7.583 13.08 9.366 13.5 12 13.5s4.417-.42 5.744-1.194a3 3 0 0 0 1.34-1.155 4 4 0 0 0 .801-1.631c.075-.342.115-.69.115-1.044a4 4 0 0 0-2.003-3.334A3 3 0 0 0 12 5z" /><path d="M12 13.5v8.5" /><path d="M12 22h-2" /><path d="M12 22h2" /><path d="M15 13.5a2.5 2.5 0 1 1-5 0" /><path d="M12 13.5a2.5 2.5 0 1 0 5 0" /><path d="M12 13.5a2.5 2.5 0 1 1 5 0" /><path d="M12 13.5a2.5 2.5 0 1 0-5 0" /><path d="M19 10a2.5 2.5 0 1 0-5 0" /><path d="M5 10a2.5 2.5 0 1 1 5 0" /></IconWrapper>;
-    const BookOpen = ({ className }) => <IconWrapper className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></IconWrapper>;
-    const BarChart3 = ({ className }) => <IconWrapper className={className}><path d="M3 3v18h18" /><path d="M7 12v6" /><path d="M11 8v10" /><path d="M15 4v14" /><path d="M19 12v6" /></IconWrapper>;
-    const Globe = ({ className }) => <IconWrapper className={className}><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></IconWrapper>;
-    const Award = ({ className }) => <IconWrapper className={className}><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></IconWrapper>;
-    const Briefcase = ({ className }) => <IconWrapper className={className}><rect width="20" height="14" x="2" y="7" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></IconWrapper>;
-    const Lightbulb = ({ className }) => <IconWrapper className={className}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.6 2.6 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></IconWrapper>;
-    const Target = ({ className }) => <IconWrapper className={className}><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></IconWrapper>;
-    const Video = ({ className }) => <IconWrapper className={className}><path d="m22 8-6 4 6 4V8Z" /><rect width="14" height="12" x="2" y="6" rx="2" ry="2" /></IconWrapper>;
-    const Users = ({ className }) => <IconWrapper className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></IconWrapper>;
 
 
     // --- 2. Components ---
@@ -181,10 +143,11 @@
 
     // --- 3. Page Layout Components ---
 
-    const Header = () => {
+    const Header = ({ onNavigate }) => {
       const [isMenuOpen, setIsMenuOpen] = React.useState(false);
       const [activeDropdown, setActiveDropdown] = React.useState(null);
 
+      // [수정] 메뉴 구조 업데이트: 핵심 서비스 하위 메뉴 변경
       const navItems = [
         { 
           name: "진로드림 소개", 
@@ -198,11 +161,10 @@
           name: "핵심 서비스", 
           href: "#services",
           children: [
-            { name: "진로수업", href: "#services" },
-            { name: "진로독서", href: "#services" },
-            { name: "진로경제", href: "#services" },
-            { name: "AI와 진로", href: "#services" },
-            { name: "1:1 상담", href: "#services" },
+            { name: "초등 수업", href: "#services", action: () => onNavigate('초등') },
+            { name: "중등 수업", href: "#services", action: () => onNavigate('중등') },
+            { name: "고등 수업", href: "#services", action: () => onNavigate('고등') },
+            { name: "성인 수업", href: "#services", action: () => onNavigate('성인') },
           ]
         },
         { 
@@ -236,6 +198,14 @@
           setActiveDropdown(null);
         } else {
           setActiveDropdown(name);
+        }
+      };
+
+      const handleLinkClick = (child) => {
+        setActiveDropdown(null);
+        setIsMenuOpen(false);
+        if (child.action) {
+          child.action();
         }
       };
 
@@ -274,8 +244,8 @@
                         <a
                           key={child.name}
                           href={child.href}
-                          className="block px-4 py-2 text-sm text-foreground rounded-md hover:bg-muted transition-colors"
-                          onClick={() => setActiveDropdown(null)}
+                          className="block px-4 py-2 text-sm text-foreground rounded-md hover:bg-muted transition-colors cursor-pointer"
+                          onClick={() => handleLinkClick(child)}
                         >
                           {child.name}
                         </a>
@@ -317,11 +287,8 @@
                           <a
                             key={child.name}
                             href={child.href}
-                            className="block py-2 text-sm text-muted-foreground hover:text-primary pl-2 border-l-2 border-transparent hover:border-primary transition-colors"
-                            onClick={() => {
-                              setIsMenuOpen(false);
-                              setActiveDropdown(null);
-                            }}
+                            className="block py-2 text-sm text-muted-foreground hover:text-primary pl-2 border-l-2 border-transparent hover:border-primary transition-colors cursor-pointer"
+                            onClick={() => handleLinkClick(child)}
                           >
                             {child.name}
                           </a>
@@ -337,7 +304,7 @@
       );
     };
 
-    const Footer = () => {
+    const Footer = ({ onNavigate }) => {
       return (
         <footer id="contact" className="bg-surface border-t border-border mt-auto">
           <div className="container mx-auto px-4 py-12">
@@ -351,10 +318,11 @@
               <div>
                 <h5 className="font-semibold mb-4 text-foreground">서비스</h5>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors">진로수업</a></li>
-                  <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors">진로독서</a></li>
-                  <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors">AI와 진로</a></li>
-                  <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors">1:1 상담</a></li>
+                  {/* [수정] Footer 링크도 카테고리 변경 */}
+                  <li><a href="#services" onClick={() => onNavigate('초등')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">초등 수업</a></li>
+                  <li><a href="#services" onClick={() => onNavigate('중등')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">중등 수업</a></li>
+                  <li><a href="#services" onClick={() => onNavigate('고등')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">고등 수업</a></li>
+                  <li><a href="#services" onClick={() => onNavigate('성인')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">성인 수업</a></li>
                 </ul>
               </div>
               <div>
@@ -374,8 +342,8 @@
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-16 text-muted-foreground shrink-0">웹사이트</span>
-                    <a href="http://jinrodream@jinrodream.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary break-all">
-                      jinrodream@jinrodream.com
+                    <a href="http://jinrodream.jinrodream.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary break-all">
+                      jinrodream.jinrodream.com
                     </a>
                   </li>
                 </ul>
@@ -392,19 +360,19 @@
     };
 
     const Index = () => {
-      
-      const services = [
-        { icon: Brain, title: "진로수업", description: "홀랜드, 다중지능, MBTI, 직업가치관 등", color: "text-primary" },
-        { icon: BookOpen, title: "진로독서", description: "책을 통해 진로를 탐색하고 시야를 넓힙니다.", color: "text-secondary" },
-        { icon: BarChart3, title: "진로경제", description: "경제 관념과 진로를 연결하는 실용적인 수업.", color: "text-accent" },
-        { icon: Globe, title: "진로생태", description: "환경과 생태를 고려한 미래 직업 탐색.", color: "text-primary" },
-        { icon: Award, title: "AI와 진로", description: "AI 시대, 변화하는 직업 세계를 대비합니다.", color: "text-secondary" },
-        { icon: Briefcase, title: "노동인권", description: "사회 구성원으로서 알아야 할 권리를 배웁니다.", color: "text-accent" },
-        { icon: Lightbulb, title: "체인지메이커", description: "사회를 긍정적으로 변화시키는 인재로 성장.", color: "text-primary" },
-        { icon: Target, title: "창업 컨설팅", description: "아이디어를 현실로 만드는 기업가정신 교육.", color: "text-secondary" },
-        { icon: Video, title: "취업 컨설팅", description: "자기소개서, 면접 등 성공적인 취업 전략.", color: "text-accent" },
-        { icon: Users, title: "1:1 상담", description: "전문가와 함께하는 맞춤형 진로 솔루션.", color: "text-primary" },
-      ];
+      // [수정] 탭 상태 및 데이터 구조 변경
+      const [activeTab, setActiveTab] = React.useState("초등");
+
+      const classData = {
+        "초등": ["cho1.png"],
+        "중등": ["joong1.png", "joong2.png", "joong3.png"],
+        "고등": ["goe1.png", "goe2.png"],
+        "성인": ["sung1.png"]
+      };
+
+      const handleTabChange = (tabName) => {
+        setActiveTab(tabName);
+      };
 
       const mentors = [
         { name: "최인경", role: "진로드림 전체대표", experience: "진로, 독서, 경제, AI, 노동인권, 컨설팅" },
@@ -416,29 +384,35 @@
       ];
 
       const newsItems = [
-        { title: "2026년 상반기 멘토링 신청 안내", date: "2026.01.01", category: "공지사항" },
-        { title: "청소년 진로 진단 검사", date: "2026.01.01", category: "진로 진단" },
-        { title: "진로 탐색을 위한 5가지 필수 팁", date: "2026.01.01", category: "진로 팁" },
-        { title: "성공적인 포트폴리오 작성 가이드", date: "2026.01.01", category: "취업 정보" },
+        { title: "2024년 상반기 멘토링 신청 안내", date: "2024.01.15", category: "공지사항" },
+        { title: "진로 탐색을 위한 5가지 필수 팁", date: "2024.01.10", category: "진로 팁" },
+        { title: "성공적인 포트폴리오 작성 가이드", date: "2024.01.05", category: "취업 정보" },
+        { title: "2024 진로 박람회 참가 후기", date: "2023.12.28", category: "행사 후기" },
+      ];
+
+      const testimonials = [
+        { name: "김하늘", age: "24세", comment: "막막했던 진로가 뚜렷해졌어요! 멘토님의 조언 덕분에 원하는 기업에 인턴으로 합격했습니다." },
+        { name: "이준호", age: "27세", comment: "취업 준비 기간 동안 정말 큰 힘이 되었습니다. 자소서 첨삭부터 면접까지 꼼꼼하게 봐주셨어요." },
+        { name: "박지민", age: "22세", comment: "나에게 맞는 직무가 무엇인지 몰랐는데, 진로수업을 통해 제 적성을 찾을 수 있었습니다." },
+        { name: "최수영", age: "29세", comment: "이직 고민이 많았는데 1:1 상담을 통해 커리어 방향성을 확실히 잡고 성공적으로 이직했어요!" },
       ];
 
       return (
         <div className="min-h-screen flex flex-col font-sans text-foreground bg-background">
-          <Header />
+          <Header onNavigate={handleTabChange} />
           
           <main className="flex-1">
             
-            {/* Hero Section - UPDATED with gate1.png and mobile fix */}
+            {/* Hero Section */}
             <section className="relative w-full py-20 md:py-32 lg:py-40 flex items-center justify-center overflow-hidden bg-slate-900">
-              {/* Background Image Wrapper */}
               <div className="absolute inset-0 z-0">
                 <img 
-                  src="gate1.png" 
+                  src="gate1.jpg" 
                   alt="진로드림 메인 대문" 
                   className="w-full h-full object-cover opacity-60" 
-                  onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2671&auto=format&fit=crop'} // Fallback image if gate1.jpg is missing
+                  onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2671&auto=format&fit=crop'} 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-black/40 to-black/30"></div> {/* Overlay for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-black/40 to-black/30"></div>
               </div>
 
               <div className="container mx-auto px-4 z-10 relative">
@@ -465,7 +439,7 @@
               </div>
             </section>
             
-            {/* About Section - Card Layout */}
+            {/* About Section */}
             <section id="about" className="py-16 md:py-24 container mx-auto px-4">
               <div className="flex flex-col gap-8">
                 <div className="text-center mb-4">
@@ -474,7 +448,6 @@
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* Text Card */}
                   <Card className="p-8 flex flex-col justify-center h-full">
                     <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                       <span className="w-1 h-6 bg-primary rounded-full"></span>
@@ -493,7 +466,6 @@
                     </div>
                   </Card>
                   
-                  {/* Image Grid Card */}
                   <Card className="p-4 bg-muted/20">
                     <div className="grid grid-cols-2 gap-4 h-full">
                       <div className="col-span-2 relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
@@ -529,33 +501,51 @@
               </div>
             </section>
 
-            {/* Services Section - Grid Layout */}
+            {/* Services Section (UPDATED with Tabs and Images) */}
             <section id="services" className="py-16 md:py-24 bg-surface border-y border-border">
               <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                  <h2 className="text-2xl md:text-3xl font-bold mb-3">핵심 서비스</h2>
-                  <p className="text-muted-foreground">다양한 커리큘럼으로 미래를 설계하세요.</p>
+                <div className="text-center mb-8">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-3">수업 프로그램</h2>
+                  <p className="text-muted-foreground">대상별 맞춤형 진로 교육을 만나보세요.</p>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                  {services.map((service, index) => (
-                    <a key={index} href="#services" className="block group">
-                      <Card className="h-full p-5 hover:border-primary/50 transition-colors hover:shadow-md">
-                        <div className={`w-10 h-10 rounded-lg bg-muted flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors`}>
-                          <service.icon className={`h-5 w-5 ${service.color}`} />
-                        </div>
-                        <h3 className="font-semibold mb-2">{service.title}</h3>
-                        <p className="text-sm text-muted-foreground line-clamp-2">
-                          {service.description}
-                        </p>
-                      </Card>
-                    </a>
+                {/* Tabs */}
+                <div className="flex flex-wrap justify-center gap-2 mb-8">
+                  {Object.keys(classData).map(tab => (
+                    <Button
+                      key={tab}
+                      variant={activeTab === tab ? "default" : "outline"}
+                      onClick={() => handleTabChange(tab)}
+                      className={`min-w-[80px] rounded-full ${activeTab === tab ? 'shadow-md' : 'border-dashed'}`}
+                    >
+                      {tab}
+                    </Button>
+                  ))}
+                </div>
+
+                {/* Image Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {classData[activeTab].map((imgSrc, idx) => (
+                    <Card key={idx} className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+                      <div className="aspect-[3/4] relative bg-muted flex items-center justify-center">
+                        <img 
+                          src={imgSrc} 
+                          alt={`${activeTab} 수업 ${idx + 1}`} 
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = `https://placehold.co/600x800/f1f5f9/64748b?text=${encodeURIComponent(activeTab + " Class " + (idx + 1))}`;
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                      </div>
+                    </Card>
                   ))}
                 </div>
               </div>
             </section>
 
-            {/* Mentors Section - Avatar Cards */}
+            {/* Mentors Section */}
             <section id="mentors" className="py-16 md:py-24 container mx-auto px-4">
               <div className="text-center mb-12">
                 <h2 className="text-2xl md:text-3xl font-bold mb-3">멘토진 소개</h2>
@@ -578,7 +568,7 @@
               </div>
             </section>
 
-            {/* News Section - List Layout */}
+            {/* News Section */}
             <section id="community" className="py-16 md:py-24 bg-surface border-t border-border">
               <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
@@ -589,9 +579,9 @@
                   <Button variant="outline" size="sm">더보기</Button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {newsItems.map((item, index) => (
-                    <Card key={index} className="p-6 hover:border-primary/50 transition-all cursor-pointer">
+                    <Card key={index} className="p-6 hover:border-primary/50 transition-all cursor-pointer h-full">
                       <div className="flex items-center justify-between mb-4">
                         <span className={`text-xs font-semibold px-2 py-1 rounded-md ${
                           item.category === '공지사항' ? 'bg-primary/10 text-primary' : 
@@ -612,9 +602,37 @@
               </div>
             </section>
 
+            {/* Testimonials Section */}
+            <section id="testimonials" className="py-16 md:py-24 container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3">선배들의 이야기</h2>
+                <p className="text-muted-foreground">진로드림을 경험한 선배들의 생생한 후기입니다.</p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {testimonials.map((t, index) => (
+                  <Card key={index} className="p-6 h-full flex flex-col bg-muted/20 hover:bg-surface hover:shadow-md transition-all">
+                    <Quote className="text-primary/20 h-8 w-8 mb-4" />
+                    <p className="text-sm text-foreground/80 mb-6 flex-grow leading-relaxed">
+                      "{t.comment}"
+                    </p>
+                    <div className="flex items-center gap-3 mt-auto">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
+                        {t.name[0]}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold">{t.name}</p>
+                        <p className="text-xs text-muted-foreground">{t.age}</p>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </section>
+
           </main>
 
-          <Footer />
+          <Footer onNavigate={handleTabChange} />
         </div>
       );
     };
