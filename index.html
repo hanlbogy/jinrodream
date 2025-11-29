@@ -104,9 +104,19 @@
     const X = ({ className }) => <IconWrapper className={className}><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></IconWrapper>;
     const ArrowRight = ({ className }) => <IconWrapper className={className}><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></IconWrapper>;
     const Quote = ({ className }) => <IconWrapper className={className}><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" /><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" /></IconWrapper>;
+    const Plus = ({ className }) => <IconWrapper className={className}><path d="M5 12h14" /><path d="M12 5v14" /></IconWrapper>;
 
-    // Service Icons (Not used in new layout but kept for compatibility)
+    // Service Icons
     const Brain = ({ className }) => <IconWrapper className={className}><path d="M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.003 3.334c0 .354.04.702.115 1.044a4 4 0 0 0 .801 1.631 3 3 0 0 0 1.34 1.155C7.583 13.08 9.366 13.5 12 13.5s4.417-.42 5.744-1.194a3 3 0 0 0 1.34-1.155 4 4 0 0 0 .801-1.631c.075-.342.115-.69.115-1.044a4 4 0 0 0-2.003-3.334A3 3 0 0 0 12 5z" /><path d="M12 13.5v8.5" /><path d="M12 22h-2" /><path d="M12 22h2" /><path d="M15 13.5a2.5 2.5 0 1 1-5 0" /><path d="M12 13.5a2.5 2.5 0 1 0 5 0" /><path d="M12 13.5a2.5 2.5 0 1 1 5 0" /><path d="M12 13.5a2.5 2.5 0 1 0-5 0" /><path d="M19 10a2.5 2.5 0 1 0-5 0" /><path d="M5 10a2.5 2.5 0 1 1 5 0" /></IconWrapper>;
+    const BookOpen = ({ className }) => <IconWrapper className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></IconWrapper>;
+    const BarChart3 = ({ className }) => <IconWrapper className={className}><path d="M3 3v18h18" /><path d="M7 12v6" /><path d="M11 8v10" /><path d="M15 4v14" /><path d="M19 12v6" /></IconWrapper>;
+    const Globe = ({ className }) => <IconWrapper className={className}><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></IconWrapper>;
+    const Award = ({ className }) => <IconWrapper className={className}><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></IconWrapper>;
+    const Briefcase = ({ className }) => <IconWrapper className={className}><rect width="20" height="14" x="2" y="7" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></IconWrapper>;
+    const Lightbulb = ({ className }) => <IconWrapper className={className}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.6 2.6 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></IconWrapper>;
+    const Target = ({ className }) => <IconWrapper className={className}><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></IconWrapper>;
+    const Video = ({ className }) => <IconWrapper className={className}><path d="m22 8-6 4 6 4V8Z" /><rect width="14" height="12" x="2" y="6" rx="2" ry="2" /></IconWrapper>;
+    const Users = ({ className }) => <IconWrapper className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></IconWrapper>;
 
 
     // --- 2. Components ---
@@ -147,7 +157,6 @@
       const [isMenuOpen, setIsMenuOpen] = React.useState(false);
       const [activeDropdown, setActiveDropdown] = React.useState(null);
 
-      // [수정] 메뉴 구조 업데이트: 핵심 서비스 하위 메뉴 변경
       const navItems = [
         { 
           name: "진로드림 소개", 
@@ -318,7 +327,6 @@
               <div>
                 <h5 className="font-semibold mb-4 text-foreground">서비스</h5>
                 <ul className="space-y-2 text-sm">
-                  {/* [수정] Footer 링크도 카테고리 변경 */}
                   <li><a href="#services" onClick={() => onNavigate('초등')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">초등 수업</a></li>
                   <li><a href="#services" onClick={() => onNavigate('중등')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">중등 수업</a></li>
                   <li><a href="#services" onClick={() => onNavigate('고등')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">고등 수업</a></li>
@@ -360,7 +368,6 @@
     };
 
     const Index = () => {
-      // [수정] 탭 상태 및 데이터 구조 변경
       const [activeTab, setActiveTab] = React.useState("초등");
 
       const classData = {
@@ -383,11 +390,12 @@
         { name: "엄유미", role: "회계", experience: "진로, 경제, 노동인권, 컨설팅, 퍼실리테이션" },
       ];
 
+      // [수정] 뉴스 날짜 2026년으로 업데이트 및 기준일 1월 10일
       const newsItems = [
         { title: "2026년 상반기 멘토링 신청 안내", date: "2026.01.10", category: "공지사항" },
-        { title: "진로 탐색을 위한 5가지 필수 팁", date: "2026.01.10", category: "진로 팁" },
-        { title: "성공적인 포트폴리오 작성 가이드", date: "2026.01.10", category: "취업 정보" },
-        { title: "2026 진로 박람회 참가 후기", date: "2026.01.10", category: "행사 후기" },
+        { title: "진로 탐색을 위한 5가지 필수 팁", date: "2026.01.05", category: "진로 팁" },
+        { title: "성공적인 포트폴리오 작성 가이드", date: "2026.01.02", category: "취업 정보" },
+        { title: "2026 진로 박람회 참가 후기", date: "2025.12.28", category: "행사 후기" },
       ];
 
       const testimonials = [
@@ -407,7 +415,7 @@
             <section className="relative w-full py-20 md:py-32 lg:py-40 flex items-center justify-center overflow-hidden bg-slate-900">
               <div className="absolute inset-0 z-0">
                 <img 
-                  src="gate1.jpg" 
+                  src="gate1.png" 
                   alt="진로드림 메인 대문" 
                   className="w-full h-full object-cover opacity-60" 
                   onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2671&auto=format&fit=crop'} 
@@ -425,10 +433,7 @@
                     체계적인 커리어 멘토링 관리 시스템
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" className="bg-primary hover:bg-primary-dark text-white border-none shadow-lg">
-                      무료 상담 신청
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
+                    {/* [수정] 상담 신청 칸(버튼) 제거 */}
                     <a href="#about">
                       <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20">
                         서비스 소개
@@ -501,7 +506,7 @@
                         />
                       </div>
 
-                      {/* [추가] 소개 이미지 1 */}
+                      {/* 소개 이미지 1 */}
                       <div className="relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
                         <img 
                           src="sogae1.png" 
@@ -510,7 +515,7 @@
                           onError={(e) => e.target.src = 'https://placehold.co/600x400/f1f5f9/64748b?text=Intro+1'}
                         />
                       </div>
-                      {/* [추가] 소개 이미지 2 */}
+                      {/* 소개 이미지 2 */}
                       <div className="relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
                         <img 
                           src="sogae2.png" 
@@ -525,7 +530,7 @@
               </div>
             </section>
 
-            {/* Services Section (UPDATED with Tabs and Images) */}
+            {/* Services Section */}
             <section id="services" className="py-16 md:py-24 bg-surface border-y border-border">
               <div className="container mx-auto px-4">
                 <div className="text-center mb-8">
@@ -551,11 +556,12 @@
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {classData[activeTab].map((imgSrc, idx) => (
                     <Card key={idx} className="overflow-hidden group hover:shadow-lg transition-all duration-300">
-                      <div className="aspect-[3/4] relative bg-muted flex items-center justify-center">
+                      {/* [수정] 이미지 잘림 방지 (object-contain, bg-white) */}
+                      <div className="aspect-[3/4] relative bg-white flex items-center justify-center">
                         <img 
                           src={imgSrc} 
                           alt={`${activeTab} 수업 ${idx + 1}`} 
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = `https://placehold.co/600x800/f1f5f9/64748b?text=${encodeURIComponent(activeTab + " Class " + (idx + 1))}`;
@@ -589,6 +595,14 @@
                     </div>
                   </Card>
                 ))}
+              </div>
+              
+              {/* [수정] 추가 멘토 표시 */}
+              <div className="mt-8 text-center">
+                <p className="text-muted-foreground font-medium flex items-center justify-center gap-2">
+                  <Plus className="w-4 h-4 text-primary" />
+                  외 50여 명의 전문 멘토진이 함께합니다
+                </p>
               </div>
             </section>
 
