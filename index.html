@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>진로드림 - 당신의 잠재력을 현실로</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Font (Inter & Noto Sans KR) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
   
-  <!-- Custom Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -49,6 +46,20 @@
           },
           boxShadow: {
             'card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-out',
+            'slide-up': 'slideUp 0.4s ease-out',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            }
           }
         }
       }
@@ -74,7 +85,6 @@
   
   <div id="root"></div>
 
-  <!-- React & ReactDOM -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -102,22 +112,11 @@
     const ChevronDown = ({ className }) => <IconWrapper className={className}><path d="m6 9 6 6 6-6" /></IconWrapper>;
     const Menu = ({ className }) => <IconWrapper className={className}><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></IconWrapper>;
     const X = ({ className }) => <IconWrapper className={className}><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></IconWrapper>;
-    const ArrowRight = ({ className }) => <IconWrapper className={className}><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></IconWrapper>;
     const Quote = ({ className }) => <IconWrapper className={className}><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" /><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" /></IconWrapper>;
     const Plus = ({ className }) => <IconWrapper className={className}><path d="M5 12h14" /><path d="M12 5v14" /></IconWrapper>;
-
-    // Service Icons
-    const Brain = ({ className }) => <IconWrapper className={className}><path d="M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.003 3.334c0 .354.04.702.115 1.044a4 4 0 0 0 .801 1.631 3 3 0 0 0 1.34 1.155C7.583 13.08 9.366 13.5 12 13.5s4.417-.42 5.744-1.194a3 3 0 0 0 1.34-1.155 4 4 0 0 0 .801-1.631c.075-.342.115-.69.115-1.044a4 4 0 0 0-2.003-3.334A3 3 0 0 0 12 5z" /><path d="M12 13.5v8.5" /><path d="M12 22h-2" /><path d="M12 22h2" /><path d="M15 13.5a2.5 2.5 0 1 1-5 0" /><path d="M12 13.5a2.5 2.5 0 1 0 5 0" /><path d="M12 13.5a2.5 2.5 0 1 1 5 0" /><path d="M12 13.5a2.5 2.5 0 1 0-5 0" /><path d="M19 10a2.5 2.5 0 1 0-5 0" /><path d="M5 10a2.5 2.5 0 1 1 5 0" /></IconWrapper>;
-    const BookOpen = ({ className }) => <IconWrapper className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></IconWrapper>;
-    const BarChart3 = ({ className }) => <IconWrapper className={className}><path d="M3 3v18h18" /><path d="M7 12v6" /><path d="M11 8v10" /><path d="M15 4v14" /><path d="M19 12v6" /></IconWrapper>;
-    const Globe = ({ className }) => <IconWrapper className={className}><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></IconWrapper>;
-    const Award = ({ className }) => <IconWrapper className={className}><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></IconWrapper>;
-    const Briefcase = ({ className }) => <IconWrapper className={className}><rect width="20" height="14" x="2" y="7" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></IconWrapper>;
-    const Lightbulb = ({ className }) => <IconWrapper className={className}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.6 2.6 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></IconWrapper>;
-    const Target = ({ className }) => <IconWrapper className={className}><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></IconWrapper>;
-    const Video = ({ className }) => <IconWrapper className={className}><path d="m22 8-6 4 6 4V8Z" /><rect width="14" height="12" x="2" y="6" rx="2" ry="2" /></IconWrapper>;
-    const Users = ({ className }) => <IconWrapper className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></IconWrapper>;
-
+    const MousePointerClick = ({ className }) => <IconWrapper className={className}><path d="m14 4.1 2.8 2.8" /><path d="M5.4 13.5 10.4 8.5 13.2 11.3 12 12.5 4.8 19.7 4.8 19.7c-.3.3-.3.8 0 1.1l5 5c.3.3.8.3 1.1 0l7.2-7.2" /><path d="M22 2l-7.2 7.2" /></IconWrapper>;
+    const Check = ({ className }) => <IconWrapper className={className}><polyline points="20 6 9 17 4 12" /></IconWrapper>;
+    const User = ({ className }) => <IconWrapper className={className}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></IconWrapper>;
 
     // --- 2. Components ---
 
@@ -145,11 +144,40 @@
       );
     };
 
-    const Card = ({ className = '', children }) => (
-      <div className={`bg-surface rounded-xl border border-border shadow-card overflow-hidden ${className}`}>
+    const Card = ({ className = '', children, onClick, ...props }) => (
+      <div 
+        className={`bg-surface rounded-xl border border-border shadow-card overflow-hidden ${className}`} 
+        onClick={onClick}
+        {...props}
+      >
         {children}
       </div>
     );
+
+    // --- Modal System ---
+    const Modal = ({ isOpen, onClose, title, children }) => {
+      if (!isOpen) return null;
+      
+      return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in" onClick={onClose}>
+          <div 
+            className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 md:p-8 relative animate-slide-up max-h-[90vh] overflow-y-auto"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-6 border-b pb-4">
+              <h3 className="text-xl font-bold text-gray-900">{title}</h3>
+              <button 
+                onClick={onClose}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            {children}
+          </div>
+        </div>
+      );
+    };
 
     // --- 3. Page Layout Components ---
 
@@ -219,36 +247,29 @@
       };
 
       return (
-        <header className="sticky top-0 z-50 w-full bg-surface border-b border-border shadow-sm">
+        <header className="sticky top-0 z-40 w-full bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/60 border-b border-border shadow-sm">
           <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-            {/* Logo */}
             <a href="#" className="flex items-center gap-2">
               <span className="text-xl font-bold bg-gradient-to-r from-primary-dark to-primary bg-clip-text text-transparent">
                 진로드림
               </span>
             </a>
             
-            {/* Desktop Navigation */}
             <nav className="hidden md:flex gap-1">
               {navItems.map((item) => (
-                <div key={item.name} className="relative">
+                <div key={item.name} className="relative group">
                   <button
+                    className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-md transition-colors text-muted-foreground hover:text-foreground hover:bg-muted`}
                     onClick={() => toggleDropdown(item.name)}
-                    className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                      activeDropdown === item.name 
-                        ? 'text-primary bg-primary-light' 
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                    }`}
                   >
                     {item.name}
                     {item.children && (
-                      <ChevronDown className={`h-4 w-4 transition-transform ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
+                      <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
                     )}
                   </button>
 
-                  {/* Dropdown Menu */}
-                  {item.children && activeDropdown === item.name && (
-                    <div className="absolute top-full left-0 mt-1 w-48 bg-surface rounded-lg shadow-lg border border-border p-1 z-50">
+                  {item.children && (
+                    <div className="absolute top-full left-0 mt-1 w-48 bg-surface rounded-lg shadow-lg border border-border p-1 z-50 hidden group-hover:block animate-fade-in">
                       {item.children.map((child) => (
                         <a
                           key={child.name}
@@ -265,7 +286,6 @@
               ))}
             </nav>
             
-            {/* Mobile Menu Toggle */}
             <div className="md:hidden">
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -273,9 +293,8 @@
             </div>
           </div>
           
-          {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden absolute top-16 left-0 w-full bg-surface border-b border-border shadow-lg p-4">
+            <div className="md:hidden absolute top-16 left-0 w-full bg-surface border-b border-border shadow-lg p-4 z-40">
               <nav className="flex flex-col space-y-2">
                 {navItems.map((item) => (
                   <div key={item.name} className="rounded-lg overflow-hidden">
@@ -289,7 +308,6 @@
                       )}
                     </button>
                     
-                    {/* Mobile Dropdown */}
                     {item.children && activeDropdown === item.name && (
                       <div className="bg-muted/30 px-4 py-2 space-y-1">
                         {item.children.map((child) => (
@@ -369,6 +387,80 @@
 
     const Index = () => {
       const [activeTab, setActiveTab] = React.useState("초등");
+      
+      // 모달 상태 관리
+      const [modalState, setModalState] = React.useState({ 
+        isOpen: false, 
+        type: null, // 'mentoring', 'quote', 'portfolio', 'gallery'
+        content: null 
+      });
+
+      // --- 데이터 모음 ---
+      
+      // 1. 멘토링 신청 데이터
+      const mentoringList = ["최인경", "권인선", "장승봉", "백소영", "정유미", "엄유미"];
+
+      // 2. 진로 탐색 명언 데이터 (10가지)
+      const careerQuotes = [
+        "가장 큰 모험은 당신이 꿈꾸는 삶을 사는 것이다. - 오프라 윈프리",
+        "미래는 꿈의 아름다움을 믿는 사람들의 것이다. - 엘리노어 루즈벨트",
+        "좋아하는 일을 하라. 그러면 평생 하루도 일하지 않아도 될 것이다. - 공자",
+        "기회는 일어나는 것이 아니라 만들어내는 것이다. - 크리스 그로서",
+        "성공은 최종적인 것이 아니며, 실패는 치명적인 것이 아니다. - 윈스턴 처칠",
+        "당신이 할 수 있다고 믿든, 할 수 없다고 믿든, 믿는 대로 될 것이다. - 헨리 포드",
+        "천리길도 한 걸음부터 시작된다. - 노자",
+        "어제와 똑같이 살면서 다른 미래를 기대하는 것은 정신병이다. - 아인슈타인",
+        "꿈을 꿀 수 있다면 이룰 수도 있다. - 월트 디즈니",
+        "남의 발자국을 밟으며 걷는 사람은 자신의 발자국을 남길 수 없다. - 짐 와일러"
+      ];
+
+      // 3. 포트폴리오 가이드 데이터 (10가지)
+      const portfolioTips = [
+        "결과물보다는 '과정'과 '문제 해결 능력'을 강조하세요.",
+        "자신만의 스토리를 담아 차별화된 브랜딩을 시도하세요.",
+        "지원하는 직무와 연관성 높은 프로젝트를 최우선으로 배치하세요.",
+        "시각적으로 깔끔하고 가독성 좋은 레이아웃을 사용하세요.",
+        "팀 프로젝트에서는 자신의 구체적인 기여도를 명확히 명시하세요.",
+        "수치화된 성과(예: 매출 20% 증가)를 제시하면 신뢰도가 올라갑니다.",
+        "실패한 경험이라도 그를 통해 배운 점을 적는다면 훌륭한 자산입니다.",
+        "최신 트렌드 기술이나 도구를 사용한 경험을 적극 어필하세요.",
+        "맞춤법 검수와 링크 작동 확인은 기본 중의 기본입니다.",
+        "포트폴리오의 첫 장은 인사담당자의 시선을 사로잡는 요약본이어야 합니다."
+      ];
+
+      // 4. 박람회 사진 데이터
+      const galleryImages = ["park1.png", "park2.png", "park3.png", "park4.png"];
+
+      // --- 핸들러 함수 ---
+
+      const handleNewsClick = (index) => {
+        let type = '';
+        let content = null;
+
+        if (index === 0) {
+          type = 'mentoring';
+        } else if (index === 1) {
+          type = 'quote';
+          content = careerQuotes[Math.floor(Math.random() * careerQuotes.length)];
+        } else if (index === 2) {
+          type = 'portfolio';
+          content = portfolioTips[Math.floor(Math.random() * portfolioTips.length)];
+        } else if (index === 3) {
+          type = 'gallery';
+        }
+
+        setModalState({ isOpen: true, type, content });
+      };
+
+      const handleApplyMentoring = (name) => {
+        alert(`${name} 멘토님에게 1:1 멘토링 신청이 접수되었습니다.\n담당자가 곧 연락드릴 예정입니다.`);
+      };
+
+      const closeModal = () => {
+        setModalState({ ...modalState, isOpen: false });
+      };
+
+      // --- 렌더링용 데이터 ---
 
       const classData = {
         "초등": ["cho1.png"],
@@ -387,10 +479,9 @@
         { name: "장승봉", role: "진로연합회 대표", experience: "진로, 독서, AI, 노동인권, 면접컨설팅" },
         { name: "백소영", role: "총무", experience: "진로, 노동인권, 레크레이션, 컨설팅" },
         { name: "정유미", role: "회계", experience: "진로, 독서, 경제, 노동인권, 컨설팅" },
-        { name: "엄유미", role: "회계", experience: "진로, 경제, 노동인권, 컨설팅, 퍼실리테이션" },
+        { name: "엄유미", role: "서기", experience: "진로, 경제, 노동인권, 컨설팅, 퍼실리테이션" },
       ];
 
-      // [수정] 뉴스 날짜 2026년으로 업데이트 및 기준일 1월 10일
       const newsItems = [
         { title: "2026년 상반기 멘토링 신청 안내", date: "2026.01.10", category: "공지사항" },
         { title: "진로 탐색을 위한 5가지 필수 팁", date: "2026.01.05", category: "진로 팁" },
@@ -404,6 +495,113 @@
         { name: "박지민", age: "22세", comment: "나에게 맞는 직무가 무엇인지 몰랐는데, 진로수업을 통해 제 적성을 찾을 수 있었습니다." },
         { name: "최수영", age: "29세", comment: "이직 고민이 많았는데 1:1 상담을 통해 커리어 방향성을 확실히 잡고 성공적으로 이직했어요!" },
       ];
+
+      // 모달 내부 컨텐츠 렌더링
+      const renderModalContent = () => {
+        const { type, content } = modalState;
+
+        if (type === 'mentoring') {
+          return (
+            <div className="space-y-6">
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                <h4 className="font-bold text-primary mb-2 flex items-center gap-2">
+                  <User className="w-5 h-5" />
+                  1:1 멘토링 신청 방법
+                </h4>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  원하는 멘토님 옆의 <strong>[신청하기]</strong> 버튼을 눌러주세요.<br/>
+                  신청 후 24시간 이내에 담당자가 일정을 조율하기 위해 연락드립니다.
+                </p>
+              </div>
+              <div className="space-y-3">
+                {mentoringList.map((mentor, idx) => (
+                  <div key={idx} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">
+                        {mentor[0]}
+                      </div>
+                      <span className="font-medium text-lg">{mentor} 멘토</span>
+                    </div>
+                    <Button size="sm" onClick={() => handleApplyMentoring(mentor)}>
+                      신청하기
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        }
+
+        if (type === 'quote') {
+          return (
+            <div className="flex flex-col items-center text-center space-y-6 py-4">
+              <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-2">
+                <Quote className="w-8 h-8" />
+              </div>
+              <h4 className="text-lg font-semibold text-secondary">오늘의 진로 탐색 명언</h4>
+              <p className="text-xl md:text-2xl font-medium text-gray-800 leading-relaxed px-4 break-keep">
+                "{content}"
+              </p>
+              <Button onClick={closeModal} variant="outline" className="mt-4">닫기</Button>
+            </div>
+          );
+        }
+
+        if (type === 'portfolio') {
+          return (
+            <div className="flex flex-col items-center text-center space-y-6 py-4">
+               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-2">
+                <Check className="w-8 h-8" />
+              </div>
+              <h4 className="text-lg font-semibold text-accent">성공적인 포트폴리오 Tip</h4>
+              <div className="bg-gray-50 p-6 rounded-xl w-full">
+                <p className="text-lg md:text-xl font-medium text-gray-800 leading-relaxed break-keep">
+                  {content}
+                </p>
+              </div>
+              <Button onClick={closeModal} variant="outline" className="mt-4">확인했습니다</Button>
+            </div>
+          );
+        }
+
+        if (type === 'gallery') {
+          return (
+            <div className="space-y-4">
+              <p className="text-center text-muted-foreground mb-4">
+                2026 진로 박람회의 생생한 현장입니다.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {galleryImages.map((img, idx) => (
+                  <div key={idx} className="aspect-video bg-gray-100 rounded-lg overflow-hidden relative group">
+                    <img 
+                      src={img} 
+                      alt={`박람회 사진 ${idx + 1}`} 
+                      className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                      onError={(e) => e.target.src = `https://placehold.co/600x400/e2e8f0/64748b?text=Fair+Image+${idx + 1}`}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="text-center mt-4">
+                <Button onClick={closeModal}>닫기</Button>
+              </div>
+            </div>
+          );
+        }
+
+        return null;
+      };
+
+      // 모달 제목 결정
+      const getModalTitle = () => {
+        switch(modalState.type) {
+          case 'mentoring': return '1:1 멘토링 신청';
+          case 'quote': return '진로 탐색 명언';
+          case 'portfolio': return '포트폴리오 가이드';
+          case 'gallery': return '2025 진로 박람회 현장';
+          default: return '';
+        }
+      };
 
       return (
         <div className="min-h-screen flex flex-col font-sans text-foreground bg-background">
@@ -433,7 +631,6 @@
                     체계적인 커리어 멘토링 관리 시스템
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    {/* [수정] 상담 신청 칸(버튼) 제거 */}
                     <a href="#about">
                       <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20">
                         서비스 소개
@@ -452,16 +649,15 @@
                   <p className="text-muted-foreground mt-2">우리가 걸어온 길과 성과를 소개합니다.</p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* Text Card */}
-                  <Card className="p-8 flex flex-col justify-center h-full">
-                    <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                      <span className="w-1 h-6 bg-primary rounded-full"></span>
+                <Card className="p-8 md:p-12 bg-white border-none shadow-lg">
+                  <div className="max-w-4xl mx-auto text-center space-y-6">
+                    <h3 className="text-2xl font-bold flex items-center justify-center gap-2 mb-6">
+                      <span className="w-2 h-8 bg-primary rounded-full"></span>
                       기관 소개
                     </h3>
-                    <div className="space-y-4 text-muted-foreground leading-relaxed">
+                    <div className="space-y-4 text-lg text-muted-foreground leading-relaxed break-keep">
                       <p>
-                        진로드림은 <strong className="text-foreground">2020년</strong>부터 시작된, 
+                        진로드림은 <strong className="text-primary font-semibold">2020년</strong>부터 시작된, 
                         서울시교육청에서 인증한 전문 강사진들의 모임입니다.
                       </p>
                       <p>
@@ -470,63 +666,79 @@
                         마음껏 펼칠 수 있도록 끊임없이 노력하고 있습니다.
                       </p>
                     </div>
-                  </Card>
-                  
-                  {/* Image Grid Card */}
-                  <Card className="p-4 bg-muted/20">
-                    <div className="grid grid-cols-2 gap-4 h-full">
-                      {/* 단체 사진 */}
-                      <div className="col-span-2 relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
-                        <img 
-                          src="KakaoTalk_20250626_220554929_23.jpg" 
-                          alt="진로드림 강사진" 
-                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                          onError={(e) => e.target.src = 'https://placehold.co/600x300/f1f5f9/64748b?text=Team+Image'}
-                        />
-                        <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-2 backdrop-blur-sm">
-                          진로드림 강사진 단체사진
+                  </div>
+                </Card>
+                
+                <div className="space-y-4">
+                  <h4 className="text-lg font-bold ml-2 border-l-4 border-primary pl-3">생생한 수업 현장</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {[1, 2, 3].map((num) => (
+                      <Card key={num} className="overflow-hidden group">
+                        <div className="relative aspect-video">
+                          <img 
+                            src={`suup${num}.png`} 
+                            alt={`수업 현장 ${num}`} 
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            onError={(e) => e.target.src = `https://images.unsplash.com/photo-${num === 1 ? '1524178232363-1fb2b075b655' : num === 2 ? '1577896851239-125c90795495' : '1531403009284-440f080d1e12'}?q=80&w=800&auto=format&fit=crop`}
+                          />
+                          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
                         </div>
-                      </div>
-                      
-                      {/* 상장 이미지들 */}
-                      <div className="relative aspect-[3/4] rounded-lg overflow-hidden border border-border shadow-sm group">
-                        <img 
-                          src="교육부장관상22년.jpg" 
-                          alt="2022년 교육부 장관상" 
-                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                          onError={(e) => e.target.src = 'https://placehold.co/400x500/f1f5f9/64748b?text=Award+2022'}
-                        />
-                      </div>
-                      <div className="relative aspect-[3/4] rounded-lg overflow-hidden border border-border shadow-sm group">
-                        <img 
-                          src="교육부장관상24년.jpg" 
-                          alt="2024년 교육부 장관상" 
-                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                          onError={(e) => e.target.src = 'https://placehold.co/400x500/f1f5f9/64748b?text=Award+2024'}
-                        />
-                      </div>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
 
-                      {/* 소개 이미지 1 */}
-                      <div className="relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
-                        <img 
-                          src="sogae1.png" 
-                          alt="진로드림 활동 소개 1" 
-                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                          onError={(e) => e.target.src = 'https://placehold.co/600x400/f1f5f9/64748b?text=Intro+1'}
-                        />
-                      </div>
-                      {/* 소개 이미지 2 */}
-                      <div className="relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
-                        <img 
-                          src="sogae2.png" 
-                          alt="진로드림 활동 소개 2" 
-                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                          onError={(e) => e.target.src = 'https://placehold.co/600x400/f1f5f9/64748b?text=Intro+2'}
-                        />
+                <Card className="p-6 bg-muted/20 mt-4">
+                  <h4 className="text-lg font-bold mb-4 text-center">수상 내역 및 활동</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-full">
+                    
+                    <div className="col-span-1 md:col-span-2 relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
+                      <img 
+                        src="KakaoTalk_20250626_220554929_23.jpg" 
+                        alt="진로드림 강사진" 
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                        onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop'}
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs p-2 backdrop-blur-sm text-center">
+                        진로드림 강사진 단체사진
                       </div>
                     </div>
-                  </Card>
-                </div>
+                    
+                    <div className="relative aspect-[3/4] rounded-lg overflow-hidden border border-border shadow-sm group">
+                      <img 
+                        src="교육부장관상22년.jpg" 
+                        alt="2022년 교육부 장관상" 
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                        onError={(e) => e.target.src = 'https://placehold.co/400x500/f1f5f9/64748b?text=Award+2022'}
+                      />
+                    </div>
+                    <div className="relative aspect-[3/4] rounded-lg overflow-hidden border border-border shadow-sm group">
+                      <img 
+                        src="교육부장관상24년.jpg" 
+                        alt="2024년 교육부 장관상" 
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                        onError={(e) => e.target.src = 'https://placehold.co/400x500/f1f5f9/64748b?text=Award+2024'}
+                      />
+                    </div>
+
+                    <div className="md:col-span-2 lg:col-span-2 relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
+                      <img 
+                        src="sogae1.png" 
+                        alt="진로드림 활동 소개 1" 
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                        onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=800&auto=format&fit=crop'}
+                      />
+                    </div>
+                    <div className="md:col-span-2 lg:col-span-2 relative aspect-video rounded-lg overflow-hidden border border-border shadow-sm group">
+                      <img 
+                        src="sogae2.png" 
+                        alt="진로드림 활동 소개 2" 
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                        onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop'}
+                      />
+                    </div>
+                  </div>
+                </Card>
               </div>
             </section>
 
@@ -538,7 +750,6 @@
                   <p className="text-muted-foreground">대상별 맞춤형 진로 교육을 만나보세요.</p>
                 </div>
                 
-                {/* Tabs */}
                 <div className="flex flex-wrap justify-center gap-2 mb-8">
                   {Object.keys(classData).map(tab => (
                     <Button
@@ -552,11 +763,9 @@
                   ))}
                 </div>
 
-                {/* Image Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {classData[activeTab].map((imgSrc, idx) => (
                     <Card key={idx} className="overflow-hidden group hover:shadow-lg transition-all duration-300">
-                      {/* [수정] 이미지 잘림 방지 (object-contain, bg-white) */}
                       <div className="aspect-[3/4] relative bg-white flex items-center justify-center">
                         <img 
                           src={imgSrc} 
@@ -597,7 +806,6 @@
                 ))}
               </div>
               
-              {/* [수정] 추가 멘토 표시 */}
               <div className="mt-8 text-center">
                 <p className="text-muted-foreground font-medium flex items-center justify-center gap-2">
                   <Plus className="w-4 h-4 text-primary" />
@@ -606,33 +814,44 @@
               </div>
             </section>
 
-            {/* News Section */}
+            {/* News Section (기능 대폭 수정됨) */}
             <section id="community" className="py-16 md:py-24 bg-surface border-t border-border">
               <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
                   <div>
                     <h2 className="text-2xl md:text-3xl font-bold mb-2">새 소식</h2>
-                    <p className="text-muted-foreground">진로드림의 최신 소식을 확인하세요.</p>
+                    <p className="text-muted-foreground">각 카드를 클릭하여 상세 정보를 확인해보세요.</p>
                   </div>
                   <Button variant="outline" size="sm">더보기</Button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {newsItems.map((item, index) => (
-                    <Card key={index} className="p-6 hover:border-primary/50 transition-all cursor-pointer h-full">
+                    <Card 
+                      key={index} 
+                      className="p-6 hover:border-primary/50 hover:shadow-lg transition-all cursor-pointer h-full group relative"
+                      onClick={() => handleNewsClick(index)}
+                    >
+                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary">
+                        <MousePointerClick className="w-5 h-5" />
+                      </div>
                       <div className="flex items-center justify-between mb-4">
                         <span className={`text-xs font-semibold px-2 py-1 rounded-md ${
                           item.category === '공지사항' ? 'bg-primary/10 text-primary' : 
                           item.category === '진로 팁' ? 'bg-secondary/10 text-secondary' : 
-                          'bg-accent/10 text-accent'
+                          item.category === '취업 정보' ? 'bg-accent/10 text-accent' :
+                          'bg-purple-100 text-purple-600'
                         }`}>
                           {item.category}
                         </span>
                         <span className="text-xs text-muted-foreground">{item.date}</span>
                       </div>
-                      <h3 className="font-semibold text-lg mb-2 line-clamp-1">{item.title}</h3>
+                      <h3 className="font-semibold text-lg mb-2 line-clamp-1 group-hover:text-primary transition-colors">{item.title}</h3>
                       <p className="text-sm text-muted-foreground">
-                        자세한 내용을 확인하려면 클릭하세요.
+                        {index === 0 ? "멘토링 신청하러 가기" : 
+                         index === 1 ? "오늘의 명언 확인하기" :
+                         index === 2 ? "포트폴리오 꿀팁 확인하기" :
+                         "박람회 사진 보러 가기"}
                       </p>
                     </Card>
                   ))}
@@ -667,6 +886,15 @@
                 ))}
               </div>
             </section>
+
+            {/* Integrated Modal */}
+            <Modal 
+              isOpen={modalState.isOpen} 
+              onClose={closeModal} 
+              title={getModalTitle()}
+            >
+              {renderModalContent()}
+            </Modal>
 
           </main>
 
