@@ -6,17 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>진로드림 - 당신의 잠재력을 현실로</title>
 
-  <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
     rel="stylesheet">
 
-  <!-- Tailwind Custom Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -79,714 +76,711 @@
 <body class="text-foreground antialiased">
   <div id="root"></div>
 
-  <!-- React + Babel Load -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
- 
-/* ------------------------------------------------------
-   1. Icon Components
------------------------------------------------------- */
-
-const IconWrapper = ({ className, children }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    {children}
-  </svg>
-);
-
-const ChevronDown = ({ className }) => (
-  <IconWrapper className={className}>
-    <path d="m6 9 6 6 6-6" />
-  </IconWrapper>
-);
-
-const Menu = ({ className }) => (
-  <IconWrapper className={className}>
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="18" x2="21" y2="18" />
-  </IconWrapper>
-);
-
-const X = ({ className }) => (
-  <IconWrapper className={className}>
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
-  </IconWrapper>
-);
-
-const Quote = ({ className }) => (
-  <IconWrapper className={className}>
-    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
-    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
-  </IconWrapper>
-);
-
-const Plus = ({ className }) => (
-  <IconWrapper className={className}>
-    <path d="M5 12h14" />
-    <path d="M12 5v14" />
-  </IconWrapper>
-);
-
-const Camera = ({ className }) => (
-  <IconWrapper className={className}>
-    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-    <circle cx="12" cy="13" r="3" />
-  </IconWrapper>
-);
-
-const FileText = ({ className }) => (
-  <IconWrapper className={className}>
-    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-    <polyline points="14 2 14 8 20 8" />
-  </IconWrapper>
-);
-
-const CheckCircle = ({ className }) => (
-  <IconWrapper className={className}>
-    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-    <polyline points="22 4 12 14.01 9 11.01" />
-  </IconWrapper>
-);
-
-
-/* ------------------------------------------------------
-   2. Button & Card Components
------------------------------------------------------- */
-
-const Button = ({ variant = "default", size = "default", className = "", children, ...props }) => {
-  const base =
-    "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none active:scale-[0.97] disabled:opacity-50";
-
-  const variants = {
-    default: "bg-primary text-white hover:bg-primary-dark",
-    outline: "border border-border bg-white hover:bg-muted text-foreground",
-    secondary: "bg-secondary text-white hover:bg-secondary-dark",
-    ghost: "hover:bg-muted",
-    link: "text-primary underline-offset-4 hover:underline",
-  };
-
-  const sizes = {
-    default: "h-10 px-4",
-    sm: "h-9 px-3",
-    lg: "h-12 px-8 text-base",
-    icon: "h-10 w-10 p-0",
-  };
-
-  return (
-    <button className={`${base} ${variants[variant]} ${sizes[size]} ${className}`} {...props}>
-      {children}
-    </button>
-  );
-};
-
-const Card = ({ className = "", children, ...props }) => (
-  <div
-    className={`bg-white rounded-xl border border-border shadow-card overflow-hidden ${className}`}
-    {...props}
-  >
-    {children}
-  </div>
-);
-
-
-/* ------------------------------------------------------
-   3. Modal Base
------------------------------------------------------- */
-
-const ModalBase = ({ isOpen, onClose, title, children, maxWidth = "max-w-lg" }) => {
-  if (!isOpen) return null;
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
-      onClick={onClose}
-    >
-      <div
-        className={`bg-white rounded-2xl shadow-2xl w-full ${maxWidth} max-h-[85vh] overflow-y-auto relative animate-slide-up`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="sticky top-0 bg-white z-10 px-6 py-4 border-b flex justify-between items-center">
-          <h3 className="text-xl font-bold">{title}</h3>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition">
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-
-        <div className="p-6">{children}</div>
-      </div>
-    </div>
-  );
-};
-
-
-/* ------------------------------------------------------
-   4. Mentoring Modal
------------------------------------------------------- */
-
-const MentoringModal = ({ isOpen, onClose }) => {
-  const mentors = ["최인경", "권인선", "장승봉", "백소영", "정유미", "엄유미"];
-
-  const apply = (name) => {
-    alert(`${name} 멘토님에게 신청이 완료되었습니다.`);
-  };
-
-  return (
-    <ModalBase isOpen={isOpen} onClose={onClose} title="1:1 멘토링 신청" maxWidth="max-w-3xl">
-      <div className="mb-6 bg-primary/5 p-4 rounded-lg border border-primary/20">
-        <h4 className="font-bold text-primary mb-2 flex items-center gap-2">
-          <CheckCircle className="w-5 h-5" />
-          신청 안내
-        </h4>
-        <ol className="list-decimal list-inside text-sm space-y-1">
-          <li>원하는 멘토를 선택하세요.</li>
-          <li>[신청하기] 버튼을 누르면 접수됩니다.</li>
-          <li>담당자가 연락하여 일정 조율을 진행합니다.</li>
-        </ol>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {mentors.map((name, idx) => (
-          <div
-            key={idx}
-            className="flex items-center justify-between p-4 border rounded-xl bg-white hover:border-primary cursor-pointer transition"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-lg font-bold">
-                {name[0]}
-              </div>
-              <span className="text-lg font-semibold">{name}</span>
-            </div>
-
-            <Button size="sm" onClick={() => apply(name)}>신청하기</Button>
-          </div>
-        ))}
-      </div>
-    </ModalBase>
-  );
-};
-
-
-/* ------------------------------------------------------
-   5. Random Quote / Portfolio Modal
------------------------------------------------------- */
-
-const RandomTextModal = ({ isOpen, onClose, title, content, subText }) => {
-  if (!isOpen) return null;
-
-  return (
-    <ModalBase isOpen={isOpen} onClose={onClose} title={title}>
-      <div className="text-center space-y-6 py-4">
-        <div className="w-16 h-16 bg-primary/10 text-primary rounded-full mx-auto flex items-center justify-center">
-          {title.includes("명언") ? (
-            <Quote className="w-8 h-8" />
-          ) : (
-            <FileText className="w-8 h-8" />
-          )}
-        </div>
-
-        <p className="text-xl md:text-2xl font-bold leading-relaxed px-3">
-          {content}
-        </p>
-
-        {subText && <p className="text-sm text-gray-500">- {subText} -</p>}
-
-        <Button onClick={onClose} className="w-full md:w-auto mt-4">닫기</Button>
-      </div>
-    </ModalBase>
-  );
-};
-
-
-/* ------------------------------------------------------
-   6. Gallery Modal
------------------------------------------------------- */
-
-const GalleryModal = ({ isOpen, onClose }) => {
-  const imgs = ["park1.png", "park2.png", "park3.png", "park4.png"];
-
-  return (
-    <ModalBase isOpen={isOpen} onClose={onClose} title="2026 진로 박람회 현장" maxWidth="max-w-4xl">
-      <p className="text-muted-foreground text-sm mb-4">
-        뜨거웠던 박람회의 현장을 사진으로 만나보세요.
-      </p>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {imgs.map((src, i) => (
-          <div key={i} className="rounded-lg overflow-hidden border border-border bg-gray-100 aspect-video">
-            <img
-              src={src}
-              className="w-full h-full object-cover"
-              onError={(e) => (e.target.src = `https://placehold.co/600x400?text=Expo+${i + 1}`)}
-            />
-          </div>
-        ))}
-      </div>
-    </ModalBase>
-  );
-};
-
-
-/* ------------------------------------------------------
-   7. Header Component
------------------------------------------------------- */
-
-const Header = ({ onNavigate }) => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [activeDropdown, setActiveDropdown] = React.useState(null);
-
-  const navItems = [
-    {
-      name: "진로드림 소개",
-      href: "#about",
-      children: [
-        { name: "소개 및 연혁", href: "#about" },
-        { name: "수상 내역", href: "#about" },
-      ],
-    },
-    {
-      name: "핵심 서비스",
-      href: "#services",
-      children: [
-        { name: "초등 수업", href: "#services", action: () => onNavigate("초등") },
-        { name: "중등 수업", href: "#services", action: () => onNavigate("중등") },
-        { name: "고등 수업", href: "#services", action: () => onNavigate("고등") },
-        { name: "성인 수업", href: "#services", action: () => onNavigate("성인") },
-      ],
-    },
-    {
-      name: "멘토 찾기",
-      href: "#mentors",
-      children: [
-        { name: "전체 멘토", href: "#mentors" },
-        { name: "멘토 지원", href: "#" },
-      ],
-    },
-    {
-      name: "커뮤니티",
-      href: "#community",
-      children: [
-        { name: "새 소식", href: "#community" },
-        { name: "선배들의 이야기", href: "#testimonials" },
-      ],
-    },
-    {
-      name: "고객센터",
-      href: "#contact",
-      children: [
-        { name: "연락처 및 위치", href: "#contact" },
-        { name: "FAQ", href: "#" },
-      ],
-    },
-  ];
-
-  const toggleDropdown = (name) => {
-    setActiveDropdown((curr) => (curr === name ? null : name));
-  };
-
-  const handleLinkClick = (child) => {
-    child.action && child.action();
-    setIsMenuOpen(false);
-    setActiveDropdown(null);
-  };
-
-  return (
-
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-border shadow-sm">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-
-        {/* Logo */}
-        <a href="#" className="text-xl font-bold bg-gradient-to-r from-primary to-primary-dark text-transparent bg-clip-text">
-          진로드림
-        </a>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-1 items-center">
-          {navItems.map((item) => (
-            <div key={item.name} className="relative group">
-              <button
-                className="px-4 py-2 rounded-md text-sm text-gray-600 hover:bg-muted/70 hover:text-black flex items-center gap-1"
-                onClick={() => toggleDropdown(item.name)}
-              >
-                {item.name}
-                <ChevronDown className="w-4 h-4" />
-              </button>
-
-              {item.children && activeDropdown === item.name && (
-                <div className="absolute top-full left-0 w-48 bg-white shadow-lg border border-border rounded-lg mt-1 p-1 animate-fade-in">
-                  {item.children.map((child) => (
-                    <a
-                      key={child.name}
-                      href={child.href}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-muted rounded-md"
-                      onClick={() => handleLinkClick(child)}
-                    >
-                      {child.name}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 rounded hover:bg-muted active:scale-95"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-border shadow-md p-4">
-          {navItems.map((item) => (
-            <div key={item.name} className="mb-2">
-              <button
-                className="w-full flex justify-between items-center px-4 py-2 text-left rounded-md bg-muted"
-                onClick={() => toggleDropdown(item.name)}
-              >
-                {item.name}
-                <ChevronDown
-                  className={`w-4 h-4 transform transition-transform ${
-                    activeDropdown === item.name ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {activeDropdown === item.name && item.children && (
-                <div className="mt-1 ml-2 border-l pl-3 space-y-1">
-                  {item.children.map((child) => (
-                    <a
-                      key={child.name}
-                      href={child.href}
-                      className="block py-2 text-sm text-gray-700 hover:text-primary"
-                      onClick={() => handleLinkClick(child)}
-                    >
-                      {child.name}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-    </header>
-  );
-};
-
-
-/* ------------------------------------------------------
-   8. Footer Component
------------------------------------------------------- */
-
-const Footer = ({ onNavigate }) => {
-  return (
-    <footer id="contact" className="bg-white border-t border-border mt-20">
-      <div className="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
-        
-        <div>
-          <h4 className="text-lg font-bold text-primary">진로드림</h4>
-          <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-            당신의 잠재력을 현실로,<br />
-            진로드림이 함께합니다.
-          </p>
-        </div>
-
-        <div>
-          <h5 className="font-semibold mb-4">서비스</h5>
-          <ul className="space-y-2 text-sm">
-            {["초등", "중등", "고등", "성인"].map((level) => (
-              <li key={level}>
-                <a
-                  href="#services"
-                  className="text-muted-foreground hover:text-primary"
-                  onClick={() => onNavigate(level)}
-                >
-                  {level} 수업
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h5 className="font-semibold mb-4">회사</h5>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#about" className="hover:text-primary">진로드림 소개</a></li>
-            <li><a href="#mentors" className="hover:text-primary">멘토 지원</a></li>
-            <li><a href="#community" className="hover:text-primary">새 소식</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5 className="font-semibold mb-4">고객센터</h5>
-          <ul className="space-y-2 text-sm">
-            <li className="flex gap-2">
-              <span className="w-16 text-muted-foreground">전화</span>
-              <a href="tel:010-4135-6232" className="font-medium hover:text-primary">
-                010-4135-6232
-              </a>
-            </li>
-
-            <li className="flex gap-2">
-              <span className="w-16 text-muted-foreground">이메일</span>
-              <a
-                href="mailto:jinrodream@jinrodream.com"
-                className="break-all hover:text-primary"
-              >
-                jinrodream@jinrodream.com
-              </a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div className="border-t border-border py-6 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Jinro Dream. All Rights Reserved.
-      </div>
-    </footer>
-  );
-};
-
-
-/* ------------------------------------------------------
-   9. Main Index Page
------------------------------------------------------- */
-
-const Index = () => {
-  const [activeTab, setActiveTab] = React.useState("초등");
-  const [modalType, setModalType] = React.useState(null);
-  const [modalContent, setModalContent] = React.useState({});
-
-  const careerQuotes = [
-    { text: "가장 큰 모험은 당신이 꿈꾸는 삶을 사는 것이다.", author: "오프라 윈프리" },
-    { text: "미래는 꿈의 아름다움을 믿는 사람들의 것이다.", author: "엘리노어 루즈벨트" },
-    { text: "준비된 자에게 기회가 온다.", author: "루이 파스퇴르" },
-    { text: "천리길도 한 걸음부터.", author: "노자" },
-  ];
-
-  const portfolioTips = [
-    "결과물뿐 아니라 과정(Process)을 기록하세요.",
-    "정량 데이터로 성과를 증명하세요.",
-    "지원 직무 관련 프로젝트를 최상단에 배치하세요.",
-    "팀 프로젝트는 본인 역할을 명확히 적으세요.",
-  ];
-
-  const newsItems = [
-    { title: "2026년 상반기 멘토링 신청 안내", date: "2026.01.10", category: "공지사항" },
-    { title: "진로 탐색을 위한 필수 팁", date: "2026.01.05", category: "진로 팁" },
-    { title: "포트폴리오 작성 가이드", date: "2026.01.02", category: "취업 정보" },
-    { title: "2026 진로 박람회 참가 후기", date: "2025.12.28", category: "행사 후기" },
-  ];
-
-  const classData = {
-    초등: ["cho1.png"],
-    중등: ["joong1.png", "joong2.png"],
-    고등: ["goe1.png", "goe2.png"],
-    성인: ["sung1.png", "sung2.png"],
-  };
-
-  const handleNewsClick = (i) => {
-    if (i === 0) setModalType("mentoring");
-    else if (i === 1) {
-      const q = careerQuotes[Math.floor(Math.random() * careerQuotes.length)];
-      setModalContent({ title: "오늘의 진로 명언", text: q.text, sub: q.author });
-      setModalType("quote");
-    } else if (i === 2) {
-      const tip = portfolioTips[Math.floor(Math.random() * portfolioTips.length)];
-      setModalContent({ title: "포트폴리오 꿀팁", text: tip, sub: "진로드림 취업지원팀" });
-      setModalType("portfolio");
-    } else {
-      setModalType("gallery");
-    }
-  };
-
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
-
-      {/* Header */}
-      <Header onNavigate={setActiveTab} />
-
-      {/* Hero Section */}
-      <section className="relative w-full py-24 md:py-40 flex items-center justify-center bg-slate-900 overflow-hidden">
-        <img
-          src="gate1.png"
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-          onError={(e) =>
-            (e.target.src = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2671")
-          }
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20"></div>
-
-        <div className="relative text-center text-white px-4 max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">진로드림 플랫폼</h1>
-          <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
-            청소년과 청년들의 꿈을 현실로 만드는<br />
-            체계적인 커리어 멘토링 시스템
-          </p>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="py-16 container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">수업 프로그램</h2>
-        <p className="text-center text-muted-foreground mb-8">대상별 맞춤형 진로 교육</p>
-
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {Object.keys(classData).map((tab) => (
-            <Button
-              key={tab}
-              variant={activeTab === tab ? "default" : "outline"}
-              className="rounded-full min-w-[80px]"
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </Button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {classData[activeTab].map((src, idx) => (
-            <Card key={idx} className="overflow-hidden">
-              <img
-                src={src}
-                className="w-full h-full object-contain bg-white aspect-[3/4]"
-                onError={(e) =>
-                  (e.target.src = `https://placehold.co/400x600?text=${activeTab}+${idx + 1}`)
-                }
-              />
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Mentors Section */}
-      <section id="mentors" className="py-16 container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-2">멘토진 소개</h2>
-        <p className="text-center text-muted-foreground mb-10">각 분야 전문 멘토진</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {["최인경", "권인선", "장승봉", "백소영", "정유미", "엄유미"].map((name, idx) => (
-            <Card key={idx} className="p-4 flex items-center gap-4 hover:bg-muted/50 transition">
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
-                {name[0]}
-              </div>
-
-              <div>
-                <h4 className="font-semibold text-lg">{name}</h4>
-                <p className="text-xs text-muted-foreground">진로드림 멘토</p>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* News Section */}
-      <section id="community" className="py-16 bg-white border-t border-border">
-        <div className="container mx-auto px-4">
-
-          <h2 className="text-3xl font-bold mb-4">새 소식</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {newsItems.map((item, i) => (
-              <Card
-                key={i}
-                className="p-6 cursor-pointer hover:border-primary/50 hover:shadow-md transition"
-                onClick={() => handleNewsClick(i)}
-              >
-                <div className="flex justify-between mb-3">
-                  <span className="px-2 py-1 text-xs rounded bg-muted text-primary font-semibold">
-                    {item.category}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{item.date}</span>
-                </div>
-
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section id="testimonials" className="py-16 container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">선배들의 이야기</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { name: "김하늘", age: "24세", comment: "막막했던 진로가 뚜렷해졌어요!" },
-            { name: "이준호", age: "27세", comment: "면접과 자소서 준비에 큰 도움이 되었어요." },
-            { name: "박지민", age: "22세", comment: "적성을 찾는 데 큰 계기가 되었어요." },
-            { name: "최수영", age: "29세", comment: "이직 방향을 명확히 정할 수 있었어요." },
-          ].map((t, i) => (
-            <Card key={i} className="p-6 flex flex-col bg-muted/30 hover:bg-white hover:shadow transition">
-              <Quote className="text-primary/20 h-8 w-8 mb-4" />
-              <p className="text-sm text-gray-700 flex-grow leading-relaxed mb-4">“{t.comment}”</p>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                  {t.name[0]}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.age}</p>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Modals */}
-      <MentoringModal isOpen={modalType === "mentoring"} onClose={() => setModalType(null)} />
-
-      <RandomTextModal
-        isOpen={modalType === "quote" || modalType === "portfolio"}
-        onClose={() => setModalType(null)}
-        title={modalContent.title}
-        content={modalContent.text}
-        subText={modalContent.sub}
-      />
-
-      <GalleryModal isOpen={modalType === "gallery"} onClose={() => setModalType(null)} />
-
-      {/* Footer */}
-      <Footer onNavigate={setActiveTab} />
-
-    </div>
-  );
-};
-
-
-/* ------------------------------------------------------
-   10. Render Application
------------------------------------------------------- */
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Index />);
-
-</script>
-
-</body>
-</html>
 
   <script type="text/babel">
+    /* ------------------------------------------------------
+       1. Icon Components
+    ------------------------------------------------------ */
+
+    const IconWrapper = ({ className, children }) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+      >
+        {children}
+      </svg>
+    );
+
+    const ChevronDown = ({ className }) => (
+      <IconWrapper className={className}>
+        <path d="m6 9 6 6 6-6" />
+      </IconWrapper>
+    );
+
+    const Menu = ({ className }) => (
+      <IconWrapper className={className}>
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </IconWrapper>
+    );
+
+    const X = ({ className }) => (
+      <IconWrapper className={className}>
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </IconWrapper>
+    );
+
+    const Quote = ({ className }) => (
+      <IconWrapper className={className}>
+        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+      </IconWrapper>
+    );
+
+    const Plus = ({ className }) => (
+      <IconWrapper className={className}>
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+      </IconWrapper>
+    );
+
+    const Camera = ({ className }) => (
+      <IconWrapper className={className}>
+        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+        <circle cx="12" cy="13" r="3" />
+      </IconWrapper>
+    );
+
+    const FileText = ({ className }) => (
+      <IconWrapper className={className}>
+        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+        <polyline points="14 2 14 8 20 8" />
+      </IconWrapper>
+    );
+
+    const CheckCircle = ({ className }) => (
+      <IconWrapper className={className}>
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </IconWrapper>
+    );
+
+
+    /* ------------------------------------------------------
+       2. Button & Card Components
+    ------------------------------------------------------ */
+
+    const Button = ({ variant = "default", size = "default", className = "", children, ...props }) => {
+      const base =
+        "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none active:scale-[0.97] disabled:opacity-50";
+
+      const variants = {
+        default: "bg-primary text-white hover:bg-primary-dark",
+        outline: "border border-border bg-white hover:bg-muted text-foreground",
+        secondary: "bg-secondary text-white hover:bg-secondary-dark",
+        ghost: "hover:bg-muted",
+        link: "text-primary underline-offset-4 hover:underline",
+      };
+
+      const sizes = {
+        default: "h-10 px-4",
+        sm: "h-9 px-3",
+        lg: "h-12 px-8 text-base",
+        icon: "h-10 w-10 p-0",
+      };
+
+      return (
+        <button className={`${base} ${variants[variant]} ${sizes[size]} ${className}`} {...props}>
+          {children}
+        </button>
+      );
+    };
+
+    const Card = ({ className = "", children, ...props }) => (
+      <div
+        className={`bg-white rounded-xl border border-border shadow-card overflow-hidden ${className}`}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+
+
+    /* ------------------------------------------------------
+       3. Modal Base
+    ------------------------------------------------------ */
+
+    const ModalBase = ({ isOpen, onClose, title, children, maxWidth = "max-w-lg" }) => {
+      if (!isOpen) return null;
+
+      return (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+          onClick={onClose}
+        >
+          <div
+            className={`bg-white rounded-2xl shadow-2xl w-full ${maxWidth} max-h-[85vh] overflow-y-auto relative animate-slide-up`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="sticky top-0 bg-white z-10 px-6 py-4 border-b flex justify-between items-center">
+              <h3 className="text-xl font-bold">{title}</h3>
+              <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="p-6">{children}</div>
+          </div>
+        </div>
+      );
+    };
+
+
+    /* ------------------------------------------------------
+       4. Mentoring Modal
+    ------------------------------------------------------ */
+
+    const MentoringModal = ({ isOpen, onClose }) => {
+      const mentors = ["최인경", "권인선", "장승봉", "백소영", "정유미", "엄유미"];
+
+      const apply = (name) => {
+        alert(`${name} 멘토님에게 신청이 완료되었습니다.`);
+      };
+
+      return (
+        <ModalBase isOpen={isOpen} onClose={onClose} title="1:1 멘토링 신청" maxWidth="max-w-3xl">
+          <div className="mb-6 bg-primary/5 p-4 rounded-lg border border-primary/20">
+            <h4 className="font-bold text-primary mb-2 flex items-center gap-2">
+              <CheckCircle className="w-5 h-5" />
+              신청 안내
+            </h4>
+            <ol className="list-decimal list-inside text-sm space-y-1">
+              <li>원하는 멘토를 선택하세요.</li>
+              <li>[신청하기] 버튼을 누르면 접수됩니다.</li>
+              <li>담당자가 연락하여 일정 조율을 진행합니다.</li>
+            </ol>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {mentors.map((name, idx) => (
+              <div
+                key={idx}
+                className="flex items-center justify-between p-4 border rounded-xl bg-white hover:border-primary cursor-pointer transition"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-lg font-bold">
+                    {name[0]}
+                  </div>
+                  <span className="text-lg font-semibold">{name}</span>
+                </div>
+
+                <Button size="sm" onClick={() => apply(name)}>신청하기</Button>
+              </div>
+            ))}
+          </div>
+        </ModalBase>
+      );
+    };
+
+
+    /* ------------------------------------------------------
+       5. Random Quote / Portfolio Modal
+    ------------------------------------------------------ */
+
+    const RandomTextModal = ({ isOpen, onClose, title, content, subText }) => {
+      if (!isOpen) return null;
+
+      return (
+        <ModalBase isOpen={isOpen} onClose={onClose} title={title}>
+          <div className="text-center space-y-6 py-4">
+            <div className="w-16 h-16 bg-primary/10 text-primary rounded-full mx-auto flex items-center justify-center">
+              {title.includes("명언") ? (
+                <Quote className="w-8 h-8" />
+              ) : (
+                <FileText className="w-8 h-8" />
+              )}
+            </div>
+
+            <p className="text-xl md:text-2xl font-bold leading-relaxed px-3">
+              {content}
+            </p>
+
+            {subText && <p className="text-sm text-gray-500">- {subText} -</p>}
+
+            <Button onClick={onClose} className="w-full md:w-auto mt-4">닫기</Button>
+          </div>
+        </ModalBase>
+      );
+    };
+
+
+    /* ------------------------------------------------------
+       6. Gallery Modal
+    ------------------------------------------------------ */
+
+    const GalleryModal = ({ isOpen, onClose }) => {
+      const imgs = ["park1.png", "park2.png", "park3.png", "park4.png"];
+
+      return (
+        <ModalBase isOpen={isOpen} onClose={onClose} title="2026 진로 박람회 현장" maxWidth="max-w-4xl">
+          <p className="text-muted-foreground text-sm mb-4">
+            뜨거웠던 박람회의 현장을 사진으로 만나보세요.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {imgs.map((src, i) => (
+              <div key={i} className="rounded-lg overflow-hidden border border-border bg-gray-100 aspect-video">
+                <img
+                  src={src}
+                  className="w-full h-full object-cover"
+                  onError={(e) => (e.target.src = `https://placehold.co/600x400?text=Expo+${i + 1}`)}
+                />
+              </div>
+            ))}
+          </div>
+        </ModalBase>
+      );
+    };
+
+
+    /* ------------------------------------------------------
+       7. Header Component
+    ------------------------------------------------------ */
+
+    const Header = ({ onNavigate }) => {
+      const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+      const [activeDropdown, setActiveDropdown] = React.useState(null);
+
+      const navItems = [
+        {
+          name: "진로드림 소개",
+          href: "#about",
+          children: [
+            { name: "소개 및 연혁", href: "#about" },
+            { name: "수상 내역", href: "#about" },
+          ],
+        },
+        {
+          name: "핵심 서비스",
+          href: "#services",
+          children: [
+            { name: "초등 수업", href: "#services", action: () => onNavigate("초등") },
+            { name: "중등 수업", href: "#services", action: () => onNavigate("중등") },
+            { name: "고등 수업", href: "#services", action: () => onNavigate("고등") },
+            { name: "성인 수업", href: "#services", action: () => onNavigate("성인") },
+          ],
+        },
+        {
+          name: "멘토 찾기",
+          href: "#mentors",
+          children: [
+            { name: "전체 멘토", href: "#mentors" },
+            { name: "멘토 지원", href: "#" },
+          ],
+        },
+        {
+          name: "커뮤니티",
+          href: "#community",
+          children: [
+            { name: "새 소식", href: "#community" },
+            { name: "선배들의 이야기", href: "#testimonials" },
+          ],
+        },
+        {
+          name: "고객센터",
+          href: "#contact",
+          children: [
+            { name: "연락처 및 위치", href: "#contact" },
+            { name: "FAQ", href: "#" },
+          ],
+        },
+      ];
+
+      const toggleDropdown = (name) => {
+        setActiveDropdown((curr) => (curr === name ? null : name));
+      };
+
+      const handleLinkClick = (child) => {
+        child.action && child.action();
+        setIsMenuOpen(false);
+        setActiveDropdown(null);
+      };
+
+      return (
+
+        <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-border shadow-sm">
+          <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+
+            {/* Logo */}
+            <a href="#" className="text-xl font-bold bg-gradient-to-r from-primary to-primary-dark text-transparent bg-clip-text">
+              진로드림
+            </a>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex gap-1 items-center">
+              {navItems.map((item) => (
+                <div key={item.name} className="relative group">
+                  <button
+                    className="px-4 py-2 rounded-md text-sm text-gray-600 hover:bg-muted/70 hover:text-black flex items-center gap-1"
+                    onClick={() => toggleDropdown(item.name)}
+                  >
+                    {item.name}
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+
+                  {item.children && activeDropdown === item.name && (
+                    <div className="absolute top-full left-0 w-48 bg-white shadow-lg border border-border rounded-lg mt-1 p-1 animate-fade-in">
+                      {item.children.map((child) => (
+                        <a
+                          key={child.name}
+                          href={child.href}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-muted rounded-md"
+                          onClick={() => handleLinkClick(child)}
+                        >
+                          {child.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 rounded hover:bg-muted active:scale-95"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden bg-white border-t border-border shadow-md p-4">
+              {navItems.map((item) => (
+                <div key={item.name} className="mb-2">
+                  <button
+                    className="w-full flex justify-between items-center px-4 py-2 text-left rounded-md bg-muted"
+                    onClick={() => toggleDropdown(item.name)}
+                  >
+                    {item.name}
+                    <ChevronDown
+                      className={`w-4 h-4 transform transition-transform ${
+                        activeDropdown === item.name ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {activeDropdown === item.name && item.children && (
+                    <div className="mt-1 ml-2 border-l pl-3 space-y-1">
+                      {item.children.map((child) => (
+                        <a
+                          key={child.name}
+                          href={child.href}
+                          className="block py-2 text-sm text-gray-700 hover:text-primary"
+                          onClick={() => handleLinkClick(child)}
+                        >
+                          {child.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </header>
+      );
+    };
+
+
+    /* ------------------------------------------------------
+       8. Footer Component
+    ------------------------------------------------------ */
+
+    const Footer = ({ onNavigate }) => {
+      return (
+        <footer id="contact" className="bg-white border-t border-border mt-20">
+          <div className="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
+            
+            <div>
+              <h4 className="text-lg font-bold text-primary">진로드림</h4>
+              <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                당신의 잠재력을 현실로,<br />
+                진로드림이 함께합니다.
+              </p>
+            </div>
+
+            <div>
+              <h5 className="font-semibold mb-4">서비스</h5>
+              <ul className="space-y-2 text-sm">
+                {["초등", "중등", "고등", "성인"].map((level) => (
+                  <li key={level}>
+                    <a
+                      href="#services"
+                      className="text-muted-foreground hover:text-primary"
+                      onClick={() => onNavigate(level)}
+                    >
+                      {level} 수업
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="font-semibold mb-4">회사</h5>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#about" className="hover:text-primary">진로드림 소개</a></li>
+                <li><a href="#mentors" className="hover:text-primary">멘토 지원</a></li>
+                <li><a href="#community" className="hover:text-primary">새 소식</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="font-semibold mb-4">고객센터</h5>
+              <ul className="space-y-2 text-sm">
+                <li className="flex gap-2">
+                  <span className="w-16 text-muted-foreground">전화</span>
+                  <a href="tel:010-4135-6232" className="font-medium hover:text-primary">
+                    010-4135-6232
+                  </a>
+                </li>
+
+                <li className="flex gap-2">
+                  <span className="w-16 text-muted-foreground">이메일</span>
+                  <a
+                    href="mailto:jinrodream@jinrodream.com"
+                    className="break-all hover:text-primary"
+                  >
+                    jinrodream@jinrodream.com
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div className="border-t border-border py-6 text-center text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Jinro Dream. All Rights Reserved.
+          </div>
+        </footer>
+      );
+    };
+
+
+    /* ------------------------------------------------------
+       9. Main Index Page
+    ------------------------------------------------------ */
+
+    const Index = () => {
+      const [activeTab, setActiveTab] = React.useState("초등");
+      const [modalType, setModalType] = React.useState(null);
+      const [modalContent, setModalContent] = React.useState({});
+
+      const careerQuotes = [
+        { text: "가장 큰 모험은 당신이 꿈꾸는 삶을 사는 것이다.", author: "오프라 윈프리" },
+        { text: "미래는 꿈의 아름다움을 믿는 사람들의 것이다.", author: "엘리노어 루즈벨트" },
+        { text: "준비된 자에게 기회가 온다.", author: "루이 파스퇴르" },
+        { text: "천리길도 한 걸음부터.", author: "노자" },
+      ];
+
+      const portfolioTips = [
+        "결과물뿐 아니라 과정(Process)을 기록하세요.",
+        "정량 데이터로 성과를 증명하세요.",
+        "지원 직무 관련 프로젝트를 최상단에 배치하세요.",
+        "팀 프로젝트는 본인 역할을 명확히 적으세요.",
+      ];
+
+      const newsItems = [
+        { title: "2026년 상반기 멘토링 신청 안내", date: "2026.01.10", category: "공지사항" },
+        { title: "진로 탐색을 위한 필수 팁", date: "2026.01.05", category: "진로 팁" },
+        { title: "포트폴리오 작성 가이드", date: "2026.01.02", category: "취업 정보" },
+        { title: "2026 진로 박람회 참가 후기", date: "2025.12.28", category: "행사 후기" },
+      ];
+
+      const classData = {
+        초등: ["cho1.png"],
+        중등: ["joong1.png", "joong2.png"],
+        고등: ["goe1.png", "goe2.png"],
+        성인: ["sung1.png", "sung2.png"],
+      };
+
+      const handleNewsClick = (i) => {
+        if (i === 0) setModalType("mentoring");
+        else if (i === 1) {
+          const q = careerQuotes[Math.floor(Math.random() * careerQuotes.length)];
+          setModalContent({ title: "오늘의 진로 명언", text: q.text, sub: q.author });
+          setModalType("quote");
+        } else if (i === 2) {
+          const tip = portfolioTips[Math.floor(Math.random() * portfolioTips.length)];
+          setModalContent({ title: "포트폴리오 꿀팁", text: tip, sub: "진로드림 취업지원팀" });
+          setModalType("portfolio");
+        } else {
+          setModalType("gallery");
+        }
+      };
+
+      return (
+        <div className="min-h-screen flex flex-col bg-background">
+
+          {/* Header */}
+          <Header onNavigate={setActiveTab} />
+
+          {/* Hero Section */}
+          <section className="relative w-full py-24 md:py-40 flex items-center justify-center bg-slate-900 overflow-hidden">
+            <img
+              src="gate1.png"
+              className="absolute inset-0 w-full h-full object-cover opacity-60"
+              onError={(e) =>
+                (e.target.src = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2671")
+              }
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20"></div>
+
+            <div className="relative text-center text-white px-4 max-w-3xl">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">진로드림 플랫폼</h1>
+              <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
+                청소년과 청년들의 꿈을 현실로 만드는<br />
+                체계적인 커리어 멘토링 시스템
+              </p>
+            </div>
+          </section>
+
+          {/* Services Section */}
+          <section id="services" className="py-16 container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-4">수업 프로그램</h2>
+            <p className="text-center text-muted-foreground mb-8">대상별 맞춤형 진로 교육</p>
+
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {Object.keys(classData).map((tab) => (
+                <Button
+                  key={tab}
+                  variant={activeTab === tab ? "default" : "outline"}
+                  className="rounded-full min-w-[80px]"
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab}
+                </Button>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {classData[activeTab].map((src, idx) => (
+                <Card key={idx} className="overflow-hidden">
+                  <img
+                    src={src}
+                    className="w-full h-full object-contain bg-white aspect-[3/4]"
+                    onError={(e) =>
+                      (e.target.src = `https://placehold.co/400x600?text=${activeTab}+${idx + 1}`)
+                    }
+                  />
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* Mentors Section */}
+          <section id="mentors" className="py-16 container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-2">멘토진 소개</h2>
+            <p className="text-center text-muted-foreground mb-10">각 분야 전문 멘토진</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {["최인경", "권인선", "장승봉", "백소영", "정유미", "엄유미"].map((name, idx) => (
+                <Card key={idx} className="p-4 flex items-center gap-4 hover:bg-muted/50 transition">
+                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
+                    {name[0]}
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-lg">{name}</h4>
+                    <p className="text-xs text-muted-foreground">진로드림 멘토</p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* News Section */}
+          <section id="community" className="py-16 bg-white border-t border-border">
+            <div className="container mx-auto px-4">
+
+              <h2 className="text-3xl font-bold mb-4">새 소식</h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {newsItems.map((item, i) => (
+                  <Card
+                    key={i}
+                    className="p-6 cursor-pointer hover:border-primary/50 hover:shadow-md transition"
+                    onClick={() => handleNewsClick(i)}
+                  >
+                    <div className="flex justify-between mb-3">
+                      <span className="px-2 py-1 text-xs rounded bg-muted text-primary font-semibold">
+                        {item.category}
+                      </span>
+                      <span className="text-xs text-muted-foreground">{item.date}</span>
+                    </div>
+
+                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Testimonials */}
+          <section id="testimonials" className="py-16 container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-8">선배들의 이야기</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { name: "김하늘", age: "24세", comment: "막막했던 진로가 뚜렷해졌어요!" },
+                { name: "이준호", age: "27세", comment: "면접과 자소서 준비에 큰 도움이 되었어요." },
+                { name: "박지민", age: "22세", comment: "적성을 찾는 데 큰 계기가 되었어요." },
+                { name: "최수영", age: "29세", comment: "이직 방향을 명확히 정할 수 있었어요." },
+              ].map((t, i) => (
+                <Card key={i} className="p-6 flex flex-col bg-muted/30 hover:bg-white hover:shadow transition">
+                  <Quote className="text-primary/20 h-8 w-8 mb-4" />
+                  <p className="text-sm text-gray-700 flex-grow leading-relaxed mb-4">“{t.comment}”</p>
+
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                      {t.name[0]}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold">{t.name}</p>
+                      <p className="text-xs text-muted-foreground">{t.age}</p>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* Modals */}
+          <MentoringModal isOpen={modalType === "mentoring"} onClose={() => setModalType(null)} />
+
+          <RandomTextModal
+            isOpen={modalType === "quote" || modalType === "portfolio"}
+            onClose={() => setModalType(null)}
+            title={modalContent.title}
+            content={modalContent.text}
+            subText={modalContent.sub}
+          />
+
+          <GalleryModal isOpen={modalType === "gallery"} onClose={() => setModalType(null)} />
+
+          {/* Footer */}
+          <Footer onNavigate={setActiveTab} />
+
+        </div>
+      );
+    };
+
+
+    /* ------------------------------------------------------
+       10. Render Application
+    ------------------------------------------------------ */
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Index />);
+  </script>
+</body>
+
+</html>
