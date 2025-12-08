@@ -12,6 +12,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
   
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -43,7 +47,6 @@
   
   <style>
     body { background-color: #F8FAFC; -webkit-tap-highlight-color: transparent; }
-    /* 스크롤바 숨김 처리 (갤러리 등에서 깔끔하게 보이기 위함) */
     .scrollbar-hide::-webkit-scrollbar { display: none; }
     .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
@@ -52,13 +55,10 @@
   
   <div id="root"></div>
 
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
   <script type="text/babel">
-    
-    // --- 1. Icons (Feather Icons style) ---
+    const { useState, useEffect } = React;
+
+    // --- 1. Icons (Feather Icons style SVG) ---
     const Icon = ({ children, className }) => (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>{children}</svg>
     );
@@ -66,7 +66,6 @@
     const XIcon = (p) => <Icon {...p}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></Icon>;
     const ChevronDown = (p) => <Icon {...p}><polyline points="6 9 12 15 18 9"/></Icon>;
     const QuoteIcon = (p) => <Icon {...p}><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/></Icon>;
-    const UserIcon = (p) => <Icon {...p}><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></Icon>;
     const ClickIcon = (p) => <Icon {...p}><path d="m14 4.1 2.8 2.8"/><path d="M5.4 13.5 10.4 8.5 13.2 11.3 12 12.5 4.8 19.7 4.8 19.7c-.3.3-.3.8 0 1.1l5 5c.3.3.8.3 1.1 0l7.2-7.2"/><path d="M22 2l-7.2 7.2"/></Icon>;
     const CheckIcon = (p) => <Icon {...p}><polyline points="20 6 9 17 4 12"/></Icon>;
     const PlusIcon = (p) => <Icon {...p}><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></Icon>;
@@ -103,7 +102,7 @@
 
     // --- 3. Layout Components ---
     const Header = ({ onNavigate }) => {
-      const [isOpen, setIsOpen] = React.useState(false);
+      const [isOpen, setIsOpen] = useState(false);
       
       const scrollToSection = (id) => {
         setIsOpen(false);
@@ -205,8 +204,8 @@
 
     // --- 4. Main Content Component ---
     const App = () => {
-      const [activeTab, setActiveTab] = React.useState("초등");
-      const [modalState, setModalState] = React.useState({ isOpen: false, type: null, content: null });
+      const [activeTab, setActiveTab] = useState("초등");
+      const [modalState, setModalState] = useState({ isOpen: false, type: null, content: null });
 
       // Data
       const mentoringList = ["최인경", "권인선", "장승봉", "백소영", "정유미", "엄유미"];
@@ -215,24 +214,14 @@
         "미래는 꿈의 아름다움을 믿는 사람들의 것이다. - 엘리노어 루즈벨트",
         "좋아하는 일을 하라. 그러면 평생 하루도 일하지 않아도 될 것이다. - 공자",
         "기회는 일어나는 것이 아니라 만들어내는 것이다. - 크리스 그로서",
-        "성공은 최종적인 것이 아니며, 실패는 치명적인 것이 아니다. - 윈스턴 처칠",
-        "당신이 할 수 있다고 믿든, 할 수 없다고 믿든, 믿는 대로 될 것이다. - 헨리 포드",
-        "천리길도 한 걸음부터 시작된다. - 노자",
-        "어제와 똑같이 살면서 다른 미래를 기대하는 것은 정신병이다. - 아인슈타인",
-        "꿈을 꿀 수 있다면 이룰 수도 있다. - 월트 디즈니",
-        "남의 발자국을 밟으며 걷는 사람은 자신의 발자국을 남길 수 없다. - 짐 와일러"
+        "성공은 최종적인 것이 아니며, 실패는 치명적인 것이 아니다. - 윈스턴 처칠"
       ];
       const portfolioTips = [
         "결과물보다는 '과정'과 '문제 해결 능력'을 강조하세요.",
         "자신만의 스토리를 담아 차별화된 브랜딩을 시도하세요.",
         "지원하는 직무와 연관성 높은 프로젝트를 최우선으로 배치하세요.",
         "시각적으로 깔끔하고 가독성 좋은 레이아웃을 사용하세요.",
-        "팀 프로젝트에서는 자신의 구체적인 기여도를 명확히 명시하세요.",
-        "수치화된 성과(예: 매출 20% 증가)를 제시하면 신뢰도가 올라갑니다.",
-        "실패한 경험이라도 그를 통해 배운 점을 적는다면 훌륭한 자산입니다.",
-        "최신 트렌드 기술이나 도구를 사용한 경험을 적극 어필하세요.",
-        "맞춤법 검수와 링크 작동 확인은 기본 중의 기본입니다.",
-        "포트폴리오의 첫 장은 인사담당자의 시선을 사로잡는 요약본이어야 합니다."
+        "팀 프로젝트에서는 자신의 구체적인 기여도를 명확히 명시하세요."
       ];
       const mentors = [
         { name: "최인경", role: "진로드림 전체대표", exp: "진로, 독서, 경제, AI, 노동인권, 컨설팅" },
@@ -259,17 +248,18 @@
       const handleApply = (name) => alert(`${name} 멘토님께 신청되었습니다.\n곧 연락드리겠습니다.`);
       const closeModal = () => setModalState({ ...modalState, isOpen: false });
 
-      // Image Fallback
-      const getFallbackImg = (e, type, id) => {
-        e.target.onerror = null;
+      // Image Fallback (Robust Version)
+      const getFallbackImg = (e, type, id = 0) => {
+        e.currentTarget.onerror = null; // Prevent infinite loop
         const map = {
           hero: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2000&auto=format&fit=crop',
           class: `https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&fit=crop`,
           group: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&fit=crop',
           award: 'https://placehold.co/400x500/f1f5f9/64748b?text=Award+Image',
-          park: `https://images.unsplash.com/photo-${id === 0 ? '1540575467063-17e6fc48dee5' : id === 1 ? '1517048696772-e5485c67133b' : '1515168892237-7ac8c3a961e2'}?q=80&w=600&fit=crop`
+          park: `https://images.unsplash.com/photo-${id === 0 ? '1540575467063-17e6fc48dee5' : id === 1 ? '1517048696772-e5485c67133b' : '1515168892237-7ac8c3a961e2'}?q=80&w=600&fit=crop`,
+          classCard: `https://placehold.co/600x800/f8fafc/cbd5e1?text=${activeTab}+Class`
         };
-        e.target.src = map[type];
+        e.currentTarget.src = map[type] || map['class'];
       };
 
       return (
@@ -292,7 +282,7 @@
               </div>
             </section>
 
-            {/* 2. About (Text Top -> Images Bottom) */}
+            {/* 2. About */}
             <section id="about" className="py-20 container mx-auto px-4">
               <div className="max-w-4xl mx-auto mb-12 text-center">
                 <h2 className="text-3xl font-bold mb-8">진로드림 소개</h2>
@@ -303,7 +293,6 @@
                   </div>
                 </Card>
                 
-                {/* Images */}
                 <div className="space-y-8">
                   <div className="text-left border-l-4 border-primary pl-4 mb-4"><h3 className="text-xl font-bold">생생한 수업 현장</h3></div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -341,9 +330,12 @@
                   {['1', '2', '3'].slice(0, activeTab === '초등' ? 1 : activeTab === '고등' || activeTab === '성인' ? 2 : 3).map((n, i) => (
                     <Card key={i} className="group">
                       <div className="aspect-[4/5] bg-white relative flex items-center justify-center p-4">
-                        <img src={`${['cho','joong','goe','sung'][['초등','중등','고등','성인'].indexOf(activeTab)]}${parseInt(i)+1}.png`} 
+                        <img 
+                          src={`${['cho','joong','goe','sung'][['초등','중등','고등','성인'].indexOf(activeTab)]}${parseInt(i)+1}.png`} 
                           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                          onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/600x800/f8fafc/cbd5e1?text=${activeTab}+Class+${i+1}`; }} alt="Class Img" />
+                          onError={(e) => getFallbackImg(e, 'classCard')} 
+                          alt="Class Img" 
+                        />
                       </div>
                     </Card>
                   ))}
@@ -371,7 +363,7 @@
               </div>
             </section>
 
-            {/* 5. News (Interactive) */}
+            {/* 5. News */}
             <section id="community" className="py-20 bg-slate-50 border-t border-border">
               <div className="container mx-auto px-4">
                 <div className="flex justify-between items-end mb-8">
@@ -422,7 +414,7 @@
           
           <Footer onNavigate={setActiveTab} />
 
-          {/* Integrated Modal Content */}
+          {/* Modal */}
           <Modal isOpen={modalState.isOpen} onClose={closeModal} title={
             modalState.type === 'mentoring' ? '1:1 멘토링 신청' : 
             modalState.type === 'quote' ? '오늘의 진로 명언' : 
@@ -481,6 +473,7 @@
       );
     };
 
+    // React Mount
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>
